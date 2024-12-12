@@ -69,11 +69,12 @@ export default class PuzzleState {
   }
 
   /**
-   * Move a piece to the blank square, if possible
+   * Move a piece to the blank square, if possible. If move is illegal,
+   * throw an exception
    * @param x The position in the X axis (horizontal)
    * @param y The position in the Y axis (vertical)
    */
-  movePiece(x: number, y: number)
+  movePiece(x: number, y: number) : boolean
   {
     // get index
     let idx = this.gridToIndex(x, y)
@@ -89,6 +90,8 @@ export default class PuzzleState {
 
     // swap blank and selected
     [this.state[idx], this.state[this.blankIndex]] = [this.state[this.blankIndex], this.state[idx]]
+    
+    return this.isSolved()
   }
 
   /**

@@ -27,7 +27,7 @@ function PuzzlePageComponent({ }: Props) {
   const id = parseInt(params["id"])
 
   return (
-    <div>
+    <div className='h-full'>
       <h1>Puzzle</h1>
       <Puzzle imagePath={puzzles[id].image} gridSize={puzzles[id].gridSize} />
     </div>

@@ -1,7 +1,7 @@
 import Pair from "@/lib/pair";
 
 
-export function getSquareCropBounds(gridSize: Pair, imageSize: Pair)
+export function getCropBounds(gridSize: Pair, imageSize: Pair)
 {
   // x vs. y
   let newWidth = imageSize.x;

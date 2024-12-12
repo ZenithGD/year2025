@@ -5,6 +5,7 @@ import { cn } from '@/utils/misc';
 import { useMutation } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import PuzzleCell from './cell';
 
 interface PuzzleGridProps {
   imagePath: string;
@@ -45,21 +46,16 @@ export default function PuzzleGrid({ imagePath, gridSize }: PuzzleGridProps) {
       <div
         className="grid gap-1"
         style={{
-          gridTemplateColumns: `repeat(${gridSize.x}, minmax(0, 1fr))`,
-          gridTemplateRows: `repeat(${gridSize.y}, minmax(0, 1fr))`,
+          gridTemplateColumns: `repeat(${gridSize.x}, 1fr)`,
+          gridTemplateRows: `repeat(${gridSize.y}, 1fr)`,
         }}
       >
         {cells.map((cell, index) => (
-          <div key={index} className="w-full h-auto">
-            <Image
-              src={`data:image/png;base64,${cell}`}
-              alt="cell"
-              layout="responsive"
-              width={1}
-              height={1} // 1:1 aspect ratio
-              objectFit="cover"
-            />
-          </div>
+          <PuzzleCell 
+            image={cell} 
+            id={Math.floor(index + 1) % (gridSize.x * gridSize.y)}
+            showId
+          />
         ))}
       </div>
     </div>
