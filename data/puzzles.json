@@ -1,0 +1,20 @@
+[
+    {
+        "title": "Christmas cat",
+        "image": "christmas-cat.png",
+        "size": { "x" : 3, "y" : 3 },
+        "difficulty" : "easy"
+    },
+    {
+        "title": "Elf",
+        "image": "elf.png",
+        "size": { "x" : 3, "y" : 3 },
+        "difficulty" : "easy"
+    },
+    {
+        "title": "Reyes magos",
+        "image": "wisemen.png",
+        "size": { "x" : 4, "y" : 3 },
+        "difficulty" : "medium"
+    }
+]
