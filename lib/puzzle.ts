@@ -1,7 +1,7 @@
 import Pair from "./pair";
 import { GridIndexError, GridPosError, IllegalMoveError } from "@/lib/errors"
 
-class Puzzle {
+export default class PuzzleState {
   state: Array<number>
   width: number
   height: number
@@ -145,5 +145,3 @@ class Puzzle {
     return solved
   }
 }
-
-export default Puzzle
