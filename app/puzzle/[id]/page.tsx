@@ -6,6 +6,7 @@ import puzzles from '@/data/puzzles.json';
 import Puzzle from '@/components/puzzle/grid'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
+import PuzzleContextProvider from '@/context/puzzle/puzzleContextProvider';
 
 type Props = {
 }
@@ -29,7 +30,13 @@ function PuzzlePageComponent({ }: Props) {
   return (
     <div className='h-full'>
       <h1>Puzzle</h1>
-      <Puzzle imagePath={puzzles[id].image} gridSize={puzzles[id].gridSize} />
+      <PuzzleContextProvider width={puzzles[id].gridSize.x} height={puzzles[id].gridSize.y}>
+        <Puzzle 
+          imagePath={puzzles[id].image} 
+          gridSize={puzzles[id].gridSize}
+          puzzleWidth={300}
+        />
+      </PuzzleContextProvider>
     </div>
   )
 }

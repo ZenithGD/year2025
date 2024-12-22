@@ -8,13 +8,13 @@
   {
     "title": "Christmas dog",
     "image": "images/collie-christmas.jpeg",
-    "gridSize": { "x": 4, "y": 3 },
+    "gridSize": { "x": 4, "y": 4 },
     "difficulty": "easy"
   },
   {
     "title": "Reyes magos",
     "image": "images/collie-christmas.jpeg",
-    "gridSize": { "x": 4, "y": 4 },
+    "gridSize": { "x": 5, "y": 5 },
     "difficulty": "medium"
   }
 ]

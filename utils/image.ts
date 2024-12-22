@@ -12,8 +12,6 @@ export function getCropBounds(gridSize: Pair, imageSize: Pair)
 
   let top = 0, left = 0;
   
-  console.log(gridAspectRatio, originalAspectRatio)
-  
   if (originalAspectRatio < gridAspectRatio) {
     // new aspect ratio is more vertically stretched than the original image
     newHeight = Math.floor(newHeight * originalAspectRatio / gridAspectRatio);

@@ -74,7 +74,7 @@ export default class PuzzleState {
    * @param x The position in the X axis (horizontal)
    * @param y The position in the Y axis (vertical)
    */
-  movePiece(x: number, y: number) : boolean
+  public movePiece(x: number, y: number) : boolean
   {
     // get index
     let idx = this.gridToIndex(x, y)
@@ -83,14 +83,19 @@ export default class PuzzleState {
     let blankPos = this.blankSquarePos()
 
     // move is legal if L1(blank, (x, y)) == 1
-    if (Pair.distL1(new Pair(x, y), blankPos) !== 1)
+    const dt = Pair.distL1(new Pair(x, y), blankPos)
+    
+    console.log(dt, "click at", new Pair(x, y), "blank at", blankPos);
+
+    if (dt !== 1)
     {
       throw new IllegalMoveError(this, idx)
     }
 
     // swap blank and selected
     [this.state[idx], this.state[this.blankIndex]] = [this.state[this.blankIndex], this.state[idx]]
-    
+    this.blankIndex = idx
+
     return this.isSolved()
   }
 
@@ -119,7 +124,7 @@ export default class PuzzleState {
       throw new GridIndexError(idx, this.width, this.height)
 
     // compute grid 2d pos
-    return new Pair(idx % this.width, Math.floor(idx / this.height))
+    return new Pair(idx % this.width, Math.floor(idx / this.width))
   }
 
   /**
@@ -146,5 +151,26 @@ export default class PuzzleState {
     solved &&= this.state[this.width * this.height - 1] === 0
 
     return solved
+  }
+
+  /**
+   * Return the position of the piece in the 2D grid
+   * @param idx 
+   */
+  public piecePosition(idx: number): Pair
+  {
+    const pos = this.state.indexOf(idx)
+    
+    if (pos < 0)
+    {
+      throw new GridIndexError(idx, this.width, this.height)
+    }
+
+    return this.indexToGrid(pos)
+  }
+
+  public getSize(): Pair
+  {
+    return new Pair(this.width, this.height)
   }
 }
