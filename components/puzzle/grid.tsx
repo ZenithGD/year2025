@@ -9,64 +9,15 @@ import PuzzleCell from './cell';
 import { usePuzzleContext } from '@/context/puzzle/puzzleContext';
 
 interface PuzzleGridProps {
-  imagePath: string,
+  cells: string[],
   puzzleWidth: number,
-  gridSize: { x: number, y: number }
+  cellGap: number
 }
 
-export default function PuzzleGrid({ imagePath, gridSize, puzzleWidth }: PuzzleGridProps) {
-  
-  // the array of references used to track each individual cell and
-  // animate them via motion
-  const cellsRef = useRef<Array<HTMLDivElement | null>>([])
+export default function PuzzleGrid({ cells, puzzleWidth, cellGap }: PuzzleGridProps) {
 
-  // the array of images
-  const [cells, setCells] = useState<string[]>([]);
-
-  // the puzzle state context
-  const puzzle = usePuzzleContext()
-
-  /**
-   * Mutation to check for changes in the state of the puzzle images
-   */
-  const processImageMutation = useMutation({
-    mutationFn: async ({ imagePath, gridSize }: ProcessImageRequest) => {
-
-      return fetch('/api/generate', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ imagePath, gridSize }),
-      }).then(r => r.json());
-    },
-    onSuccess: (data: { cells: string[] }) => {
-      setCells(data.cells.slice(0, -1));
-    },
-  });
-
-  // Trigger image processing when the component mounts
-  useEffect(() => {
-    processImageMutation.mutate({ imagePath, gridSize });
-  }, [imagePath, gridSize]);
-
-  useEffect(() => {
-    console.log(puzzle.state)
-  }, [puzzle.state])
-
+  const puzzle = usePuzzleContext();
   const pieceSize = puzzleWidth / puzzle.width;
-  
-  if (processImageMutation.isPending)
-  {
-    return (
-      <p>Processing image...</p>
-    )
-  }
-
-  if (processImageMutation.isError)
-  {
-    return (
-      <p>Error: {processImageMutation.error?.message}</p>
-    )
-  }
 
   return (
     <div className='flex justify-center'>
@@ -83,6 +34,7 @@ export default function PuzzleGrid({ imagePath, gridSize, puzzleWidth }: PuzzleG
             showId
             key={Math.floor(index + 1)}
             size={pieceSize}
+            gap={cellGap}
           />
         ))}
       </div>

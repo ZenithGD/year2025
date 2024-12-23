@@ -11,16 +11,18 @@ type Props = {
   id: number
   showId: boolean,
   size: number,
+  gap: number
 }
 
-function PuzzleCell({ image, id, showId, size }: Props) {
+function PuzzleCell({ image, id, showId, size, gap }: Props) {
 
   const puzzle = usePuzzleContext()
-  const ref = useRef(null)
   const [scope, animate] = useAnimate()
   const [pos, setPos] = useState(puzzle.piecePosition(id))
 
-  const handleMove : React.MouseEventHandler<HTMLButtonElement> = (e) => {
+  const handleMove: React.MouseEventHandler<HTMLButtonElement> = (e) => {
+    e.preventDefault()
+
     // change puzzle state
     try {
       const solved = puzzle.movePiece(pos.x, pos.y)
@@ -31,8 +33,9 @@ function PuzzleCell({ image, id, showId, size }: Props) {
 
       animate(
         scope.current,
-        { x: newPos.x * size, y: newPos.y * size },
-        { duration: 0.3, delay: 0.1, ease: "easeInOut" }
+        { x: newPos.x * size + gap / 2.0,
+          y: newPos.y * size + gap / 2.0 },
+        { duration: 0.2, ease: "easeInOut" }
       )
 
       if (solved)
@@ -50,25 +53,22 @@ function PuzzleCell({ image, id, showId, size }: Props) {
       key={id}
       className={
         cn(
-          "absolute h-auto",
-          { "shadow-lg": id > 0 } 
+          "absolute h-auto shadow-md"
         )
       }
       style={{
-        x: pos.x * size,
-        y: pos.y * size
+        x: pos.x * size + gap / 2.0,
+        y: pos.y * size + gap / 2.0
       }}
       ref={scope}
-      
-      transition={{ duration: 0.3, delay: 1, ease: "linear" }}
       onClick={handleMove}
     >
       {id > 0 &&
         <Image
           src={`data:image/png;base64,${image}`}
           alt={`cell-${id}`}
-          width={size}
-          height={size}
+          width={size - gap}
+          height={size - gap}
           className="rounded-lg"
         />
       }

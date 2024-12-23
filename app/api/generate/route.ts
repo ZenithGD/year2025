@@ -7,7 +7,7 @@ import Pair from "@/lib/pair";
 
 export interface ProcessImageRequest {
   imagePath: string;
-  gridSize: { x: number, y: number };
+  gridSize: Pair;
 }
 export async function POST(req: Request) {
   try {
