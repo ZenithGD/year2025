@@ -13,8 +13,9 @@ export async function POST(req: Request) {
   try {
     const { imagePath, gridSize }: ProcessImageRequest = await req.json();
 
+    console.log(imagePath, gridSize)
     // resolve the image path
-    const resolvedPath = path.resolve('./public', imagePath);
+    const resolvedPath = path.resolve('./public/images', imagePath);
     await fs.access(resolvedPath);
 
     // load and process the image
@@ -56,6 +57,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ cells, cropped : cropped.toString('base64') });
   } catch (err: unknown) {
     const error = err instanceof Error ? err.message : 'Unknown error';
+    console.log()
     return NextResponse.json({ error }, { status: 500 });
   }
 }

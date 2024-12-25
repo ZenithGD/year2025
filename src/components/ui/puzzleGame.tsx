@@ -5,14 +5,15 @@ import React, { useEffect, useRef, useState } from 'react'
 import PuzzleGrid from '../puzzle/grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { PuzzleRowType } from '@/src/db/schema';
 
 interface Props {
-  imagePath: string,
+  puzzleInfo: PuzzleRowType,
   puzzleWidth: number,
   cellGap: number
 }
 
-function PuzzleGame({ imagePath, puzzleWidth, cellGap }: Props) {
+function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
 
   // the array of images
   const [cells, setCells] = useState<string[]>([]);
@@ -39,24 +40,24 @@ function PuzzleGame({ imagePath, puzzleWidth, cellGap }: Props) {
 
   // Trigger image processing when the component mounts
   useEffect(() => {
-    processImageMutation.mutate({ imagePath, gridSize: puzzle.getSize() });
-  }, [imagePath]);
+    processImageMutation.mutate({ imagePath: puzzleInfo.image, gridSize: puzzle.getSize() });
+  }, [puzzleInfo.image]);
 
   useEffect(() => {
     console.log(puzzle.state)
   }, [puzzle.state])
-  
+
+  if (processImageMutation.isError)
+    {
+      return (
+        <p>Error: {processImageMutation.error?.message}</p>
+      )
+    }
+
   if (processImageMutation.isIdle || processImageMutation.isPending)
   {
     return (
       <p>Processing image...</p>
-    )
-  }
-
-  if (processImageMutation.isError)
-  {
-    return (
-      <p>Error: {processImageMutation.error?.message}</p>
     )
   }
 
