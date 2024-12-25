@@ -1,4 +1,4 @@
-import { ProcessImageRequest } from '@/app/api/generate/route';
+import { ProcessImageRequest } from '@/src/app/api/generate/route';
 import { usePuzzleContext } from '@/context/puzzle/puzzleContext';
 import { useMutation } from '@tanstack/react-query';
 import React, { useEffect, useRef, useState } from 'react'

@@ -24,7 +24,6 @@ function PuzzlePage(props: Props)
 }
 
 function PuzzlePageComponent({ }: Props) {
-  const [puzzle, setPuzzle] = useState(null);
   const params = useParams<{ id: string }>()
   const id = parseInt(params["id"])
 
@@ -34,7 +33,7 @@ function PuzzlePageComponent({ }: Props) {
         <Link href="/puzzle">Home</Link>
       </div>
       <h1>Puzzle</h1>
-      <PuzzleContextProvider width={puzzles[id].gridSize.x} height={puzzles[id].gridSize.y}>
+      <PuzzleContextProvider width={puzzles[id].gridSize} height={puzzles[id].gridSize}>
         <PuzzleGame 
           imagePath={puzzles[id].image} 
           puzzleWidth={300}

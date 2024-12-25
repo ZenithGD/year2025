@@ -1,6 +1,6 @@
 'use client';
 
-import { ProcessImageRequest } from '@/app/api/generate/route';
+import { ProcessImageRequest } from '@/src/app/api/generate/route';
 import { cn } from '@/utils/misc';
 import { useMutation } from '@tanstack/react-query';
 import Image from 'next/image';
