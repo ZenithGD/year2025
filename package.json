@@ -10,6 +10,8 @@
     "lint": "next lint",
     "db:migrate": "drizzle-kit migrate",
     "db:generate": "drizzle-kit generate",
+    "db:studio": "drizzle-kit studio",
+    "db:push`": "drizzle-kit push`",
     "db:fill": "tsx src/db/fill.tsx",
     "db:clean": "tsx src/db/clean.tsx"
   },

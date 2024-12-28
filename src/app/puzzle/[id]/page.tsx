@@ -1,6 +1,7 @@
 "use client"
 
 import React, { ReactNode, useState } from 'react'
+import { useMediaQuery } from 'react-responsive'
 
 import puzzles from '@/data/puzzles.json';
 import PuzzleGame from '@/components/ui/puzzleGame';
@@ -10,6 +11,7 @@ import PuzzleContextProvider from '@/context/puzzle/puzzleContextProvider';
 import Link from 'next/link';
 import { db } from '@/src/db';
 import { PuzzleRowType } from '@/src/db/schema';
+import { MAX_MOBILE_WIDTH, MAX_TABLET_WIDTH, puzzleWidth } from '@/src/utils/misc';
 
 type Props = {
 }
@@ -28,6 +30,9 @@ function PuzzlePage(props: Props)
 function PuzzlePageComponent({ }: Props) {
   const params = useParams<{ id: string }>()
   const id = parseInt(params["id"])
+
+  const isMobile = useMediaQuery({ query: `(max-width: ${MAX_MOBILE_WIDTH}px)` })
+  const isTablet = useMediaQuery({ query: `(max-width: ${MAX_TABLET_WIDTH}px)` })
 
   const fetchPuzzleInfo = async () => {
     return await fetch(`/api/puzzle/${id}`)
@@ -51,18 +56,20 @@ function PuzzlePageComponent({ }: Props) {
   
 
   return (
-    <div className='h-full w-full'>
+    <div className='flex flex-col self-center h-full w-full'>
       <div>
         <Link href="/puzzle">Home</Link>
       </div>
       <h1>Puzzle</h1>
-      <PuzzleContextProvider width={data.size} height={data.size}>
-        <PuzzleGame 
-          puzzleInfo={data}
-          puzzleWidth={300}
-          cellGap={4}
-        />
-      </PuzzleContextProvider>
+      <div className='flex flex-col py-6'>
+        <PuzzleContextProvider width={data.size} height={data.size}>
+          <PuzzleGame 
+            puzzleInfo={data}
+            puzzleWidth={puzzleWidth(isMobile, isTablet)}
+            cellGap={4}
+          />
+        </PuzzleContextProvider>
+      </div>
     </div>
   )
 }

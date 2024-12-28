@@ -3,24 +3,24 @@
     "title": "Christmas cat",
     "image": "cat-christmas.webp",
     "gridSize": 3,
-    "difficulty": "easy"
+    "difficulty": 1
   },
   {
     "title": "Christmas dog",
     "image": "collie-christmas.jpeg",
     "gridSize": 4,
-    "difficulty": "easy"
+    "difficulty": 1
   },
   {
     "title": "Reyes magos",
     "image": "collie-christmas.jpeg",
     "gridSize": 5,
-    "difficulty": "medium"
+    "difficulty": 2
   },
   {
     "title": "Reyes magos II",
     "image": "collie-christmas.jpeg",
     "gridSize": 6,
-    "difficulty": "medium"
+    "difficulty": 3
   }
 ]

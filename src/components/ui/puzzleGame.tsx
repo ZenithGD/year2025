@@ -1,10 +1,10 @@
 import { ProcessImageRequest } from '@/src/app/api/generate/route';
 import { usePuzzleContext } from '@/context/puzzle/puzzleContext';
 import { useMutation } from '@tanstack/react-query';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import PuzzleGrid from '../puzzle/grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCheck, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import { faCheck, faCog, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
 import { PuzzleRowType } from '@/src/db/schema';
 
 interface Props {
@@ -17,6 +17,9 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
 
   // the array of images
   const [cells, setCells] = useState<string[]>([]);
+  
+  // Show id of each cell
+  const [showId, setShowId] = useState<boolean>(false)
 
   // the puzzle state context
   const puzzle = usePuzzleContext()
@@ -43,10 +46,6 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
     processImageMutation.mutate({ imagePath: puzzleInfo.image, gridSize: puzzle.getSize() });
   }, [puzzleInfo.image]);
 
-  useEffect(() => {
-    console.log(puzzle.state)
-  }, [puzzle.state])
-
   if (processImageMutation.isError)
     {
       return (
@@ -64,27 +63,34 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
   return (
     <div className='flex w-full h-full justify-center items-center'>
       <div className='flex flex-col gap-4'>
-        <div className='border-2 border-green-200 bg-green-600 backdrop-blur rounded-lg filter shadow-lg p-4'>
+        <div className='bg-gradient-to-t from-green-700 to-green-500 backdrop-blur rounded-lg filter shadow-lg p-4'>
           <PuzzleGrid
             cells={cells}
             puzzleWidth={puzzleWidth}
             cellGap={cellGap}
           />
         </div>
+        <button
+          className='bg-gradient-to-t from-green-700 to-green-600 flex justify-center items-center w-full p-1 bg-green-600 hover:from-green-600 hover:to-green-500 rounded-md'
+        >
+          <p className='self-center text-green-100 font-bold'>Settings</p> 
+          <FontAwesomeIcon className='text-green-100 aspect-square pl-2 p-2' icon={faCog} />
+        </button>
         <div className='flex gap-4'>
           <button
-            className='divide-x border-2 border-green-200 flex justify-between items-center gap-4 w-full p-1 bg-green-600 hover:bg-green-500 rounded-md'
+            className='bg-gradient-to-t from-green-700 to-green-600 divide-x flex justify-between items-center w-full p-1 bg-green-600 hover:from-green-600 hover:to-green-500 rounded-md'
           >
             <p className='self-center w-full text-green-100 font-bold flex-grow'>Hint</p> 
             <FontAwesomeIcon className='text-green-100  aspect-square pl-3 p-2' icon={faMagnifyingGlass} />
           </button>
           <button
-            className='divide-x border-2 border-green-200 flex justify-between items-center gap-4 w-full p-1 bg-green-600 hover:bg-green-500 rounded-md'
+            className='bg-gradient-to-t from-green-700 to-green-600 divide-x flex justify-between items-center w-full p-1 bg-green-600 hover:from-green-600 hover:to-green-500 rounded-md'
           >
             <p className='self-center w-full text-green-100 font-bold flex-grow'>Solution</p> 
             <FontAwesomeIcon className='text-green-100 aspect-square pl-3 p-2' icon={faCheck} />
           </button>
         </div>
+        
       </div>
     </div>
   )

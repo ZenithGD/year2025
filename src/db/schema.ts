@@ -5,7 +5,7 @@ export const puzzle = sqliteTable("puzzle", {
   id: integer('id').primaryKey(),
   title: text('title').notNull(),
   size: integer('size').notNull(),
-  difficulty: text('difficulty', { enum: ["easy", "medium", "hard"] }).notNull(),
+  difficulty: integer('difficulty').notNull().default(1),
   image: text('image').notNull()
 });
 

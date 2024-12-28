@@ -1,10 +1,12 @@
-import React, { useRef, useState } from 'react'
+"use client"
+import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
-import { cn } from '@/utils/misc'
+import { cn, MAX_MOBILE_WIDTH, MAX_TABLET_WIDTH, puzzleWidth } from '@/utils/misc'
 import { motion, useAnimate } from 'motion/react'
 import Pair from '@/lib/pair'
 import { usePuzzleContext } from '@/context/puzzle/puzzleContext'
 import toast from 'react-hot-toast'
+import { useMediaQuery } from 'react-responsive'
 
 type Props = {
   image: string,
@@ -19,6 +21,34 @@ function PuzzleCell({ image, id, showId, size, gap }: Props) {
   const puzzle = usePuzzleContext()
   const [scope, animate] = useAnimate()
   const [pos, setPos] = useState(puzzle.piecePosition(id))
+
+  useEffect(() => {
+
+    const handleResize = () => {
+      // detect new resized dimensions
+      const isMobile = window.innerWidth < MAX_MOBILE_WIDTH
+      const isTablet = window.innerWidth < MAX_TABLET_WIDTH
+
+      const cellSize = puzzleWidth(isMobile, isTablet) / puzzle.width
+      const newPos = puzzle.piecePosition(id)
+      if ( id === 35 || id === 1 )
+        console.log("resize", newPos)
+      // since an scope already exists, style setting is not possible
+      // and an instant animation is done instead.
+      animate(
+        scope.current,
+        { x: newPos.x * cellSize + gap / 2.0,
+          y: newPos.y * cellSize + gap / 2.0 },
+        { duration: 0 }
+      )
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+        window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
 
   const handleMove: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
@@ -53,7 +83,7 @@ function PuzzleCell({ image, id, showId, size, gap }: Props) {
       key={id}
       className={
         cn(
-          "absolute h-auto shadow-md"
+          "absolute h-auto filter drop-shadow-md"
         )
       }
       style={{

@@ -11,13 +11,16 @@ import { usePuzzleContext } from '@/context/puzzle/puzzleContext';
 interface PuzzleGridProps {
   cells: string[],
   puzzleWidth: number,
-  cellGap: number
+  cellGap: number,
+  showId: boolean
 }
 
-export default function PuzzleGrid({ cells, puzzleWidth, cellGap }: PuzzleGridProps) {
+export default function PuzzleGrid({ cells, puzzleWidth, cellGap, showId }: PuzzleGridProps) {
 
   const puzzle = usePuzzleContext();
   const pieceSize = puzzleWidth / puzzle.width;
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   return (
     <div className='flex justify-center'>
@@ -31,7 +34,7 @@ export default function PuzzleGrid({ cells, puzzleWidth, cellGap }: PuzzleGridPr
           <PuzzleCell 
             image={cell}
             id={Math.floor(index + 1)}
-            showId
+            showId={showId}
             key={Math.floor(index + 1)}
             size={pieceSize}
             gap={cellGap}

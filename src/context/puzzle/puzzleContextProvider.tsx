@@ -1,6 +1,6 @@
 
 
-import React from 'react'
+import React, { useState } from 'react'
 
 import { createPuzzleContext, PuzzleContext } from './puzzleContext'
 
@@ -11,8 +11,10 @@ type Props = {
 }
 
 function PuzzleContextProvider({ children, width, height, currentState }: React.PropsWithChildren<Props>) {
+  const [puzzle, setPuzzle] = useState(createPuzzleContext(width, height, currentState))
+
   return (
-    <PuzzleContext.Provider value={createPuzzleContext(width, height, currentState)}>
+    <PuzzleContext.Provider value={puzzle}>
       {children}
     </PuzzleContext.Provider>
   )

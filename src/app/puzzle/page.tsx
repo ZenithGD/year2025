@@ -16,7 +16,7 @@ async function PuzzleSelectionPage({ }: Props) {
   return (
     <div>
       <h1>All puzzles</h1>
-      <div className='grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 place-items-center gap-8'>
+      <div className='grid xl:grid-cold-5 lg:grid-cols-4 md:grid-cols-3 grid-cols-2 place-items-center gap-8'>
         {puzzles.map(
           (p, key) =>
             <PuzzleCard key={key} puzzleData={p} />
