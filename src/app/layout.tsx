@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 
@@ -34,6 +35,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <SpeedInsights />
         <Toaster position="bottom-right" />
         <Nav />
         <main className="bg-green-900 min-h-screen w-full flex flex-col p-8 mt-16">

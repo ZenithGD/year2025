@@ -20,7 +20,7 @@ function OptionsModal({ closeModal }: Props) {
           <FontAwesomeIcon icon={faClose} />
         </button>
       </div>
-      <h2>Options</h2>
+      <h2 className='font-bold'>Options</h2>
       <div className='flex self-stretch justify-between gap-2'>
         <p>Show cell numbers</p>
         <Switch value={showId} toggleValue={() => setShowId(!showId)} /> 
