@@ -1,24 +1,18 @@
 import { db } from "@/src/db"
-import { eq, lt, gte, ne } from 'drizzle-orm';
+import { eq } from 'drizzle-orm';
 import { puzzle } from "@/src/db/schema"
-import { NextResponse } from "next/server"
-import { NextApiRequest } from "next";
+import { NextRequest, NextResponse } from "next/server"
 
-export interface PuzzleGetRequest {
-  id: number
-}
 
-export async function GET(req: NextApiRequest, { params }: { params: { id: number } }) {
+export async function GET(req: NextRequest, context: { params: Promise<{ id: number }> }) {
+  const { id } = await context.params; // Await the params
 
-  const { id } = await params
+  const rows = await db.select().from(puzzle).where(eq(puzzle.id, id));
 
-  const rows = await db.select().from(puzzle).where(eq(puzzle.id, id))
-
-  if (rows.length === 0)
-  {
+  if (rows.length === 0) {
     const error = `No puzzle exists with id ${id}`;
     return NextResponse.json({ error }, { status: 404 });
   }
 
-  return NextResponse.json({ row: rows[0] })
+  return NextResponse.json({ row: rows[0] });
 }
