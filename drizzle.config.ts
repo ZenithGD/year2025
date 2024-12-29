@@ -1,7 +1,8 @@
-import { config } from 'dotenv';
+import "dotenv/config"
 import { defineConfig } from 'drizzle-kit';
 
-config({ path: '.env' });
+console.log("DB_URL:", process.env.DB_URL ? "Available" : "Missing");
+console.log("DB_TOKEN:", process.env.DB_TOKEN ? "Available" : "Missing");
 
 export default defineConfig({
   schema: './src/db/schema.ts',
