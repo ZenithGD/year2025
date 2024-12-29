@@ -15,7 +15,7 @@ export const cn = (...inputs: (string | object)[]) => twMerge(clsx(inputs))
  * @returns The width of the puzzle in pixels
  */
 export const puzzleWidth = (isMobile: boolean, isTablet: boolean): number => {
-  if (isMobile) return 260;
-  if (isTablet) return 400;
-  return 500
+  if (isMobile) return 250;
+  if (isTablet) return 360;
+  return 460
 }

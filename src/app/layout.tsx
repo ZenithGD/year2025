@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
+import Nav from "../components/ui/nav";
 config.autoAddCss = false
 
 const geistSans = Geist({
@@ -33,8 +34,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Toaster position="bottom-right"/>
-        <main className="bg-green-800 min-h-screen w-full flex flex-col">
+        <Toaster position="bottom-right" />
+        <Nav />
+        <main className="bg-green-900 min-h-screen w-full flex flex-col p-8 mt-16">
           {children}
         </main>
       </body>

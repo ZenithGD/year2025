@@ -2,10 +2,20 @@ import PuzzleState from "@/lib/puzzle";
 import React from "react";
 import { createContext } from "react";
 
+type PuzzleStateContextType = {
+  puzzle: PuzzleState,
+
+  // game options
+  showId: boolean,
+  setShowId: (sid: boolean) => void
+  highlightCorrect: boolean,
+  setHighlightCorrect: (shc: boolean) => void
+}
+
 /**
  * The context to store a puzzle
  */
-export const PuzzleContext = createContext<PuzzleState>(undefined!)
+export const PuzzleContext = createContext<PuzzleStateContextType>(undefined!)
 
 /**
  * Create a new puzzle context with some configuration

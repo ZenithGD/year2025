@@ -17,7 +17,7 @@ interface PuzzleGridProps {
 
 export default function PuzzleGrid({ cells, puzzleWidth, cellGap, showId }: PuzzleGridProps) {
 
-  const puzzle = usePuzzleContext();
+  const { puzzle } = usePuzzleContext();
   const pieceSize = puzzleWidth / puzzle.width;
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);

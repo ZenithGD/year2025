@@ -18,7 +18,7 @@ type Props = {
 
 function PuzzleCell({ image, id, showId, size, gap }: Props) {
 
-  const puzzle = usePuzzleContext()
+  const { puzzle } = usePuzzleContext()
   const [scope, animate] = useAnimate()
   const [pos, setPos] = useState(puzzle.piecePosition(id))
 
