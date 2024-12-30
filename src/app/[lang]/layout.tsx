@@ -11,6 +11,7 @@ import Nav from "./components/ui/nav"; // Example import
 import { Geist, Geist_Mono, Henny_Penny } from "next/font/google";
 import { i18n, Locale } from "@/i18n-config";
 import { getDictionary } from "@/get-dictionary";
+import DictionaryProvider from "./context/i18n/dictionaryProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -36,22 +37,25 @@ export default async function RootLayout({
   params
 }: Readonly<{
   children: React.ReactNode;
-  params: Promise<{ lang: Locale }>;
+  params: { lang: Locale };
 }>) {
 
-  const dictionary = await getDictionary((await params).lang)
+  const dictionary = await getDictionary(params.lang)
 
   return (
     <html lang={(await params).lang}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <SpeedInsights />
-        <Toaster position="bottom-right" />
-        <Nav />
-        <main className="bg-green-900 min-h-screen w-full flex flex-col p-8 mt-16">
-          {children}
-        </main>
+        <DictionaryProvider dictionary={dictionary}>
+          <SpeedInsights />
+          <Toaster position="bottom-right" />
+          <Nav />
+          <main className="bg-green-900 min-h-screen w-full flex flex-col p-8 mt-16">
+            {children}
+          </main>
+
+        </DictionaryProvider>
       </body>
     </html>
   );

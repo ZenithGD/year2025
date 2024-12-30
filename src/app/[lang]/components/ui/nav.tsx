@@ -8,15 +8,18 @@ import { useMediaQuery } from 'react-responsive'
 import { faAward, faBars, faPuzzlePiece, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AnimatePresence, motion } from 'motion/react'
+import { useDictionary } from '../../context/i18n/dictionaryProvider'
 
 type Props = {}
 
 function Nav({ }: Props) {
 
+  const dictionary = useDictionary()
+
   return (
     <nav className='fixed flex justify-between gap-2 top-0 w-screen h-16 bg-green-800 z-50 shadow-md items-center px-8'>
       <Link className='text-2xl flex gap-1 items-center' href="/">
-        <p>Year 2025</p>
+        <p>{dictionary.year2025}</p>
         <Image src="/images/star.png" alt="Star icon" width={50} height={50}></Image>
       </Link>
       {
