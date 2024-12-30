@@ -12,6 +12,7 @@ import Link from 'next/link';
 import { db } from '@/src/db';
 import { PuzzleRowType } from '@/src/db/schema';
 import { MAX_MOBILE_WIDTH, MAX_TABLET_WIDTH, puzzleWidth } from '@/src/utils/misc';
+import { generateShuffleState } from '@/src/utils/puzzleUtils';
 
 type Props = {
 }
@@ -52,8 +53,10 @@ function PuzzlePageComponent({ }: Props) {
       return (
         <p>Fetching puzzle info...</p>
       )
-    }
+  }
   
+  const randomState = generateShuffleState(data.size)
+  console.log("random: ", randomState)
 
   return (
     <div className='flex flex-col self-center h-full w-full'>
@@ -62,7 +65,7 @@ function PuzzlePageComponent({ }: Props) {
       </div>
       <h1>Puzzle</h1>
       <div className='flex flex-col py-6'>
-        <PuzzleContextProvider width={data.size} height={data.size}>
+        <PuzzleContextProvider width={data.size} height={data.size} currentState={randomState}>
           <PuzzleGame 
             puzzleInfo={data}
             puzzleWidth={puzzleWidth(isMobile, isTablet)}

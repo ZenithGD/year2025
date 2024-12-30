@@ -22,7 +22,7 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
   const [cells, setCells] = useState<string[]>([]);
 
   // the puzzle state context
-  const { puzzle, showId } = usePuzzleContext()
+  const { puzzle } = usePuzzleContext()
 
   const [showSettingsModal, setShowSettingsModal] = useState(false);
 
@@ -69,7 +69,6 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
               cells={cells}
               puzzleWidth={puzzleWidth}
               cellGap={cellGap}
-              showId={showId}
             />
           </div>
           <button

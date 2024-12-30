@@ -1,87 +1,43 @@
-// Extracted from https://github.com/alex3165/ts-pq/blob/master/src/priorityqueue.ts
+export type QueueNode<T> = { element: T, value: number }
 
-export interface Node {
-  x: number;
-  y: number;
-}
+/**
+ * Min-heap data structure
+ */
+export class PriorityQueue<T>
+{
+  queue: QueueNode<T>[]
+  constructor()
+  {
+    this.queue = []
+  }
 
-export type Tuple<T> = [T, number];
+  public pop(): QueueNode<T> | undefined
+  {
+    return this.queue.shift()
+  }
 
-export class PriorityQueue<T extends Node> {
-  heap: Tuple<T>[] = [];
+  public push(e: T, val: number)
+  {
+    // search index
+    let i = 0
+    let foundInsert = false
 
-  constructor() {}
-
-  insert(val: T, priority: number) {
-    if (!this.heap.length || this.heap[this.heap.length - 1][1] > priority) {
-      this.heap.push([val, priority]);
-      return this.heap;
-    }
-
-    const tmp: Tuple<T>[] = [];
-    let found = false;
-
-    for (let i = 0; i < this.heap.length; i++) {
-      const p = this.heap[i][1];
-
-      if (priority >= p && !found) {
-        tmp.push([val, priority]);
-        found = true;
+    while (i < this.queue.length && !foundInsert)
+    {
+      if (this.queue[i].value > val)
+      {
+        foundInsert = true
+        break
       }
-
-      tmp.push(this.heap[i]);
+      i++
     }
 
-    return (this.heap = tmp);
+    // insert new element
+    this.queue.splice(i, 0, { element: e, value: val })
   }
 
-  has({ x, y }: T) {
-    const foundNode = this.heap.find(([val]) => val.x === x && val.y === y);
-
-    return !!foundNode;
-  }
-
-  get({ x, y }: T) {
-    const foundNode = this.heap.find(([val]) => val.x === x && val.y === y);
-
-    return foundNode && foundNode[0];
-  }
-
-  shift(priority: boolean) {
-    const tuple = this.heap.shift();
-    if (priority) {
-      return tuple;
-    }
-
-    return tuple ? tuple[0] : undefined;
-  }
-
-  pop(priority: boolean) {
-    const tuple = this.heap.pop();
-
-    if (priority) {
-      return tuple;
-    }
-
-    return tuple ? tuple[0] : undefined;
-  }
-
-  priorities() {
-    return this.heap.map(([_, p]) => p);
-  }
-
-  values() {
-    return this.heap.map(([val]) => val);
-  }
-
-  size() {
-    return this.heap.length;
-  }
-
-  toArray(values: boolean) {
-    if (values) {
-      return this.heap.map(([val]) => val);
-    }
-    return this.heap;
+  public peek(): QueueNode<T> | undefined
+  {
+    return this.queue.at(0)
   }
 }

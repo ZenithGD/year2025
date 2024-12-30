@@ -11,13 +11,12 @@ import { usePuzzleContext } from '@/context/puzzle/puzzleContext';
 interface PuzzleGridProps {
   cells: string[],
   puzzleWidth: number,
-  cellGap: number,
-  showId: boolean
+  cellGap: number
 }
 
-export default function PuzzleGrid({ cells, puzzleWidth, cellGap, showId }: PuzzleGridProps) {
+export default function PuzzleGrid({ cells, puzzleWidth, cellGap }: PuzzleGridProps) {
 
-  const { puzzle } = usePuzzleContext();
+  const { puzzle, showId, highlightCorrect } = usePuzzleContext();
   const pieceSize = puzzleWidth / puzzle.width;
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -35,9 +34,11 @@ export default function PuzzleGrid({ cells, puzzleWidth, cellGap, showId }: Puzz
             image={cell}
             id={Math.floor(index + 1)}
             showId={showId}
+            highlightCorrect={highlightCorrect}
             key={Math.floor(index + 1)}
             size={pieceSize}
             gap={cellGap}
+            interactable={() => !puzzle.isSolved()}
           />
         ))}
       </div>

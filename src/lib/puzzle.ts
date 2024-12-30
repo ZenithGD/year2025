@@ -84,8 +84,6 @@ export default class PuzzleState {
 
     // move is legal if L1(blank, (x, y)) == 1
     const dt = Pair.distL1(new Pair(x, y), blankPos)
-    
-    console.log(dt, "click at", new Pair(x, y), "blank at", blankPos);
 
     if (dt !== 1)
     {
@@ -108,7 +106,7 @@ export default class PuzzleState {
   gridToIndex(x: number, y: number) {
 
     // check bounds before returning
-    if ( x < 0 && y < 0 && x >= this.width && y >= this.height )
+    if ( x < 0 && y < 0 || x >= this.width && y >= this.height )
       throw new GridPosError(x, this.width, y, this.height)
 
     return y * this.width + x;
@@ -172,5 +170,12 @@ export default class PuzzleState {
   public getSize(): Pair
   {
     return new Pair(this.width, this.height)
+  }
+
+  public correctlyPlaced(idx: number): boolean
+  {
+    if (idx === 0) return this.state.at(-1) === 0
+    
+    return idx === this.state[idx - 1]
   }
 }

@@ -12,11 +12,13 @@ type Props = {
   image: string,
   id: number
   showId: boolean,
+  highlightCorrect: boolean,
   size: number,
-  gap: number
+  gap: number,
+  interactable: () => boolean
 }
 
-function PuzzleCell({ image, id, showId, size, gap }: Props) {
+function PuzzleCell({ image, id, showId, highlightCorrect, size, gap, interactable }: Props) {
 
   const { puzzle } = usePuzzleContext()
   const [scope, animate] = useAnimate()
@@ -52,6 +54,11 @@ function PuzzleCell({ image, id, showId, size, gap }: Props) {
 
   const handleMove: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
+
+    console.log(interactable())
+
+    if (!interactable())
+      console.log("Already solved!!")
 
     // change puzzle state
     try {
@@ -103,9 +110,26 @@ function PuzzleCell({ image, id, showId, size, gap }: Props) {
         />
       }
 
-      {showId && id > 0 &&
-        <div className='absolute top-0 left-0 border-2 border-green-300 h-full w-full rounded-lg'>
-          <div className='absolute top-0 left-0 bg-green-300 h-8 w-8 p-2 rounded-tl-sm rounded-br-md flex justify-center items-center text-green-950 text-center font-extrabold'>{id}</div>
+      {showId &&
+        <div
+          className='absolute top-0 left-0  h-full w-full rounded-lg'
+        >
+          <div className={cn(
+            'absolute top-0 left-0 bg-green-300 h-8 w-8 p-2 rounded-tl-md rounded-br-md flex justify-center items-center text-green-950 text-center font-extrabold',
+            { 'bg-red-600':   highlightCorrect && !puzzle.correctlyPlaced(id) },
+            { 'bg-green-300': !highlightCorrect || puzzle.correctlyPlaced(id) } 
+          )}> { id }</div>
+        </div>
+      }
+
+      {highlightCorrect &&
+        <div
+          className=
+          {cn('absolute top-0 left-0 h-full w-full border-4 border-red-400 p-2 rounded-md flex justify-center items-center text-green-950 text-center font-extrabold',
+            { 'border-red-600':   highlightCorrect && !puzzle.correctlyPlaced(id) },
+            { 'border-green-300': !highlightCorrect || puzzle.correctlyPlaced(id) } 
+          )}
+        >
         </div>
       }
     </motion.button>
