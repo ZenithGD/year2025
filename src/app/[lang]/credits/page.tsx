@@ -1,4 +1,4 @@
-import CreditsCard from '@/src/components/ui/creditsCard'
+import CreditsCard from '@/src/app/[lang]/components/ui/creditsCard'
 import React from 'react'
 
 type Props = {}

@@ -1,12 +1,12 @@
 'use client';
 
-import { ProcessImageRequest } from '@/src/app/api/generate/route';
+import { ProcessImageRequest } from '@/src/app/[lang]/api/generate/route';
 import { cn } from '@/utils/misc';
 import { useMutation } from '@tanstack/react-query';
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import PuzzleCell from './cell';
-import { usePuzzleContext } from '@/context/puzzle/puzzleContext';
+import { usePuzzleContext } from '@/src/app/[lang]/context/puzzle/puzzleContext';
 
 interface PuzzleGridProps {
   cells: string[],

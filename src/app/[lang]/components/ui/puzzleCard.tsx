@@ -11,9 +11,7 @@ type Props = {
 
 function PuzzleCard({ puzzleData }: Props) {
 
-  console.log(puzzleData)
   const nr = Array.from(new Array(puzzleData.difficulty).keys())
-  console.log(nr)
 
   return (
     <Link
@@ -42,11 +40,11 @@ function PuzzleCard({ puzzleData }: Props) {
             )
             : (nr.map((e, key) => <FontAwesomeIcon key={key} icon={faStar} />))  }
         </div>
-        <div className="bg-red-400 rounded-b-lg p-2">
-          aaa
+        <div className="bg-red-400 rounded-b-lg p-2 flex flex-col items-center">
+          <p className='text-red-900 font-bold'>{puzzleData.title}</p>
         </div>
       </div>
-      <div className='absolute top-0 left-1/2 -translate-x-[50%] -translate-y-[calc(50%-2px)] rounded-full bg-green-300 p-6 w-8 h-8 flex justify-center items-center'>
+      <div className='absolute w-3/4 top-0 left-1/2 -translate-x-[50%] -translate-y-[calc(50%-2px)] rounded-full bg-green-300 p-6 h-8 flex justify-center items-center'>
         <p className='font-extrabold text-2xl text-green-950'>{puzzleData.id}</p>
       </div>
     </Link>

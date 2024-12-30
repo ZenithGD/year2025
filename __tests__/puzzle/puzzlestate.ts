@@ -3,6 +3,7 @@ import {beforeEach, describe, expect, it} from '@jest/globals';
 import PuzzleState from '@/lib/puzzle'; // Adjust the path as necessary
 import { IllegalMoveError, GridPosError, GridIndexError } from '@/lib/errors';
 import Pair from '@/lib/pair';
+import { generateShuffleState, isSolvable } from '@/src/utils/puzzleUtils';
 
 describe('PuzzleState', () => {
 
@@ -95,6 +96,24 @@ describe('PuzzleState', () => {
     expect(() => puzzle.gridToIndex(3, 3)).toThrowError(GridPosError);  // Invalid position (out of bounds)
     expect(() => puzzle.indexToGrid(10)).toThrowError(GridIndexError);  // Invalid index (out of bounds)
   });
+
+  // Test 10: Test solvability of randomly generated puzzles
+  it('should always generate a solvable configuration', () => {
+    for (let i = 0; i < 100; i++)
+    {
+      const neven = 6
+      const rs = generateShuffleState(neven);
+
+      expect(isSolvable(rs, neven)).toBe(true);
+
+      const nodd = 5
+      const rs2 = generateShuffleState(nodd);
+
+      expect(isSolvable(rs2, nodd)).toBe(true);
+    }
+    
+  });
+
 
 });
 

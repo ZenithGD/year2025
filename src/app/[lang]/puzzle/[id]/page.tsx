@@ -4,10 +4,10 @@ import React, { ReactNode, useState } from 'react'
 import { useMediaQuery } from 'react-responsive'
 
 import puzzles from '@/data/puzzles.json';
-import PuzzleGame from '@/components/ui/puzzleGame';
+import PuzzleGame from '@/src/app/[lang]/components/ui/puzzleGame';
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
-import PuzzleContextProvider from '@/context/puzzle/puzzleContextProvider';
+import PuzzleContextProvider from '@/src/app/[lang]/context/puzzle/puzzleContextProvider';
 import Link from 'next/link';
 import { db } from '@/src/db';
 import { PuzzleRowType } from '@/src/db/schema';
@@ -29,6 +29,7 @@ function PuzzlePage(props: Props)
 }
 
 function PuzzlePageComponent({ }: Props) {
+  
   const params = useParams<{ id: string }>()
   const id = parseInt(params["id"])
 

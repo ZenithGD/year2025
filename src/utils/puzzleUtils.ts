@@ -5,12 +5,12 @@
  * @param n The number of cells per row
  * @returns The number of inversions in the puzzle state
  */
-export function countInversions(state: number[], n: number): number
+export function countInversions(state: number[]): number
 {
   let iv = 0
-  for (let i = 0; i < n; i++)
+  for (let i = 0; i < state.length; i++)
   {
-    for (let j = i + 1; j < n; j++)
+    for (let j = i + 1; j < state.length; j++)
     {
       if (state[i] > 0 && state[j] > 0 && state[i] > state[j])
       {
@@ -30,7 +30,7 @@ export function countInversions(state: number[], n: number): number
  */
 export function isSolvable(state: number[], n: number): boolean
 {
-  const iv = countInversions(state, n)
+  const iv = countInversions(state)
   const blankIndex = state.indexOf(0);
   const blankRowFromBottom = n - Math.floor(blankIndex / n);
 

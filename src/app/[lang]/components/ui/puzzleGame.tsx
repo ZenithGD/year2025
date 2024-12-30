@@ -1,5 +1,5 @@
-import { ProcessImageRequest } from '@/src/app/api/generate/route';
-import { usePuzzleContext } from '@/context/puzzle/puzzleContext';
+import { ProcessImageRequest } from '@/src/app/[lang]/api/generate/route';
+import { usePuzzleContext } from '@/src/app/[lang]/context/puzzle/puzzleContext';
 import { useMutation } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react'
 import PuzzleGrid from '../puzzle/grid';

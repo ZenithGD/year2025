@@ -1,7 +1,7 @@
 import { useAnimate } from 'motion/react'
 import React from 'react'
 import Switch from './switch'
-import { usePuzzleContext } from '@/src/context/puzzle/puzzleContext'
+import { usePuzzleContext } from '@/src/app/[lang]/context/puzzle/puzzleContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClose } from '@fortawesome/free-solid-svg-icons'
 
