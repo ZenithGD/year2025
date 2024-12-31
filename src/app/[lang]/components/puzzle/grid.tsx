@@ -21,6 +21,8 @@ export default function PuzzleGrid({ cells, puzzleWidth, cellGap }: PuzzleGridPr
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
+  
+
   return (
     <div className='flex justify-center'>
       <div

@@ -7,6 +7,7 @@ import Pair from '@/lib/pair'
 import { usePuzzleContext } from '@/src/app/[lang]/context/puzzle/puzzleContext'
 import toast from 'react-hot-toast'
 import { useMediaQuery } from 'react-responsive'
+import { manhattanHeuristic, solveAStar } from '@/src/lib/solve'
 
 type Props = {
   image: string,
@@ -33,8 +34,7 @@ function PuzzleCell({ image, id, showId, highlightCorrect, size, gap, interactab
 
       const cellSize = puzzleWidth(isMobile, isTablet) / puzzle.width
       const newPos = puzzle.piecePosition(id)
-      if (id === 35 || id === 1)
-        console.log("resize", newPos)
+
       // since an scope already exists, style setting is not possible
       // and an instant animation is done instead.
       animate(
@@ -127,7 +127,8 @@ function PuzzleCell({ image, id, showId, highlightCorrect, size, gap, interactab
               animate={{
                 backgroundColor: puzzle.correctlyPlaced(id)
                   ? 'rgb(134 239 172)'
-                  : 'rgb(220 38 38)'
+                  : 'rgb(220 38 38)',
+                opacity: 1
               }}
             >
               {id}
@@ -146,7 +147,7 @@ function PuzzleCell({ image, id, showId, highlightCorrect, size, gap, interactab
             initial={{ opacity: 0 }}
             exit={{ opacity: 0 }}
             animate={{
-              borderColor: puzzle.correctlyPlaced(id) ? 'rgb(134 239 172)' : 'rgb(220 38 38)' // Tailwind colors in RGB
+              borderColor: puzzle.correctlyPlaced(id) ? 'rgb(134 239 172)' : 'rgb(220 38 38)', opacity: 1// Tailwind colors in RGB
             }}
           >
           </motion.div>

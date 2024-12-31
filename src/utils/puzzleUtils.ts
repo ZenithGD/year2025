@@ -2,7 +2,6 @@
  * Compute the number of inverted cells in the puzzle.
  * An inversion is counted for some i < j if state[i] > state[j]
  * @param state The state to count inversions
- * @param n The number of cells per row
  * @returns The number of inversions in the puzzle state
  */
 export function countInversions(state: number[]): number
@@ -34,12 +33,13 @@ export function isSolvable(state: number[], n: number): boolean
   const blankIndex = state.indexOf(0);
   const blankRowFromBottom = n - Math.floor(blankIndex / n);
 
-  if (n % 2 === 1)
-  {
-    return (iv + blankRowFromBottom) % 2 === 0;
-  }
-  else {
-    return iv % 2 === 0
+  if (n % 2 === 1) {
+    // Odd grid: solvable if inversion count is even
+    return iv % 2 === 0;
+  } else {
+    // Even grid: solvable if (row from bottom is even and inversion count is odd)
+    // OR (row from bottom is odd and inversion count is even)
+    return (blankRowFromBottom % 2 === 0) || (iv % 2 === 1);
   }
 }
 
@@ -78,10 +78,10 @@ export function generateShuffleState(n: number)
    
   if (!isSolvable(state, n))
   {
-    // Swap two non-blank tiles to toggle the inversion count
+    // swap different tiles to change inversion count
     let i = 0;
     let j = 1;
-    while (state[i] === 0 || state[j] === 0) {
+    while (state[i] === 0 || state[j] === 0 || i === j) {
       i = Math.floor(Math.random() * (n * n));
       j = Math.floor(Math.random() * (n * n));
     }

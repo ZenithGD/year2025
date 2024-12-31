@@ -19,3 +19,21 @@ export const puzzleWidth = (isMobile: boolean, isTablet: boolean): number => {
   if (isTablet) return 360;
   return 460
 }
+
+
+
+export function formatMsTime(ms: number)
+{
+  if (!isFinite(ms))
+  {
+    return "--:--:--"
+  }
+
+  // convert to mm:ss:ll
+  const millis = Math.floor(ms % 1000)
+  const totalSeconds = Math.floor(ms / 1000)
+  const seconds = Math.floor(totalSeconds % 60)
+  const minutes = Math.floor(totalSeconds / 60)
+
+  return `${minutes}:${seconds}:${millis}`
+}

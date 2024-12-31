@@ -13,10 +13,22 @@ function Credits({}: Props) {
         asset="/images/star.png"
       />
       <CreditsCard
-        name="Star icon"
-        author="pngtree"
-        url="https://pngtree.com/freepng/realistic-golden-shooting-star-trail-vector_5570946.html"
-        asset="/images/star.png"
+        name="Spain icons"
+        author="Flaticon"
+        url="https://www.flaticon.com/free-icons/spain"
+        asset="/images/flags/spain.png"
+      />
+      <CreditsCard
+        name="UK Flag icons"
+        author="Flaticon"
+        url="https://www.flaticon.com/free-icons/uk-flag"
+        asset="/images/flags/united-kingdom.png"
+      />
+      <CreditsCard
+        name="France icons"
+        author="Flaticon"
+        url="https://www.flaticon.com/free-icons/france"
+        asset="/images/flags/france.png"
       />
     </div>
   )

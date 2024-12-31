@@ -12,7 +12,7 @@ function OptionsModal({ closeModal }: Props) {
   const { showId, setShowId, highlightCorrect, setHighlightCorrect } = usePuzzleContext()
   
   return (
-    <div className='relative w-96 flex flex-col items-center gap-2 bg-gradient-to-t from-green-600 to-green-500 p-4'>
+    <div className='relative lg:w-96 w-72 flex flex-col items-center gap-2 rounded-lg bg-gradient-to-t from-green-600 to-green-500 p-4'>
       <div className='absolute top-4 left-4'>
         <button
           onClick={closeModal}

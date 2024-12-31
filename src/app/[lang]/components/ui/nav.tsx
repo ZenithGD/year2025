@@ -5,10 +5,11 @@ import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { MAX_MOBILE_WIDTH, MAX_TABLET_WIDTH } from '@/src/utils/misc'
 import { useMediaQuery } from 'react-responsive'
-import { faAward, faBars, faPuzzlePiece, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faAward, faBars, faPuzzlePiece, faQuestionCircle, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AnimatePresence, motion } from 'motion/react'
 import { useDictionary } from '../../context/i18n/dictionaryProvider'
+import LocaleSwitcher from './localeSwitcher'
 
 type Props = {}
 
@@ -18,8 +19,8 @@ function Nav({ }: Props) {
 
   return (
     <nav className='fixed flex justify-between gap-2 top-0 w-screen h-16 bg-green-800 z-50 shadow-md items-center px-8'>
-      <Link className='text-2xl flex gap-1 items-center' href="/">
-        <p>{dictionary.year2025}</p>
+      <Link className='lg:text-2xl text-xl flex items-center' href="/">
+        <p className='lg:block hidden text-green-100 font-christmas'>{dictionary.year2025}</p>
         <Image src="/images/star.png" alt="Star icon" width={50} height={50}></Image>
       </Link>
       {
@@ -40,7 +41,10 @@ function Nav({ }: Props) {
             </div>
           )
       } */}
-      <MobileNavMenu />
+      <div className='flex items-center gap-4'>
+        <LocaleSwitcher />
+        <MobileNavMenu />
+      </div>
     </nav>
   )
 }
@@ -99,13 +103,16 @@ function MobileNavMenu() {
               <p>Puzzles</p>
             </Link>
             <Link href="/credits" className="p-2 flex items-center gap-1 w-full hover:bg-green-100/40 rounded-md">
-
               <FontAwesomeIcon className="w-6" icon={faUser} />
               <p>Credits</p>
             </Link>
             <Link href="/stats" className="p-2 flex items-center gap-1 w-full hover:bg-green-100/40 rounded-md">
               <FontAwesomeIcon className="w-6" icon={faAward} />
               <p>Stats</p>
+            </Link>
+            <Link href="/howto" className="p-2 flex items-center gap-1 w-full hover:bg-green-100/40 rounded-md">
+              <FontAwesomeIcon className="w-6" icon={faQuestionCircle} />
+              <p>Behind the scenes</p>
             </Link>
           </motion.div>
         }

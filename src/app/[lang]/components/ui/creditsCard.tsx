@@ -18,7 +18,8 @@ function CreditsCard({name, author, url, asset}: Props) {
             src={asset}
             alt={name + ", by " + author}
             layout="fill"
-            className='rounded-t-lg border-green-300 object-cover'
+            objectFit='contain'
+            className='rounded-t-lg border-green-300 object-cover p-4'
           />
         </div>
       </div>

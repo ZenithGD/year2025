@@ -98,18 +98,25 @@ describe('PuzzleState', () => {
   });
 
   // Test 10: Test solvability of randomly generated puzzles
-  it('should always generate a solvable configuration', () => {
-    for (let i = 0; i < 100; i++)
+  it('should always generate a solvable configuration for even number of rows in puzzle', () => {
+    for (let i = 0; i < 1000; i++)
     {
-      const neven = 6
-      const rs = generateShuffleState(neven);
+      const n = 4
+      const rs = generateShuffleState(n);
 
-      expect(isSolvable(rs, neven)).toBe(true);
+      expect(isSolvable(rs, n)).toBe(true);
+    }
+    
+  });
 
-      const nodd = 5
-      const rs2 = generateShuffleState(nodd);
+   // Test 10: Test solvability of randomly generated puzzles
+   it('should always generate a solvable configuration for odd number of rows in puzzle', () => {
+    for (let i = 0; i < 1000; i++)
+    {
+      const n = 5
+      const rs = generateShuffleState(n);
 
-      expect(isSolvable(rs2, nodd)).toBe(true);
+      expect(isSolvable(rs, n)).toBe(true);
     }
     
   });

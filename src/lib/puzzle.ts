@@ -84,7 +84,7 @@ export default class PuzzleState {
 
     // move is legal if L1(blank, (x, y)) == 1
     const dt = Pair.distL1(new Pair(x, y), blankPos)
-
+    
     if (dt !== 1)
     {
       throw new IllegalMoveError(this, idx)
@@ -106,7 +106,7 @@ export default class PuzzleState {
   gridToIndex(x: number, y: number) {
 
     // check bounds before returning
-    if ( x < 0 && y < 0 || x >= this.width && y >= this.height )
+    if ( x < 0 || y < 0 || x >= this.width || y >= this.height )
       throw new GridPosError(x, this.width, y, this.height)
 
     return y * this.width + x;

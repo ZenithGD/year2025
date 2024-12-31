@@ -13,6 +13,8 @@ import { db } from '@/src/db';
 import { PuzzleRowType } from '@/src/db/schema';
 import { MAX_MOBILE_WIDTH, MAX_TABLET_WIDTH, puzzleWidth } from '@/src/utils/misc';
 import { generateShuffleState } from '@/src/utils/puzzleUtils';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowLeft, faTrophy } from '@fortawesome/free-solid-svg-icons';
 
 type Props = {
 }
@@ -56,16 +58,27 @@ function PuzzlePageComponent({ }: Props) {
       )
   }
   
+  // shuffle state is getting called every render (4 times on strict mode)...
   const randomState = generateShuffleState(data.size)
-  console.log("random: ", randomState)
 
   return (
     <div className='flex flex-col self-center h-full w-full'>
       <div>
-        <Link href="/puzzle">Home</Link>
+        <Link href="/puzzle" className='flex items-center gap-2 mb-4 text-pretty word-break'>
+          <FontAwesomeIcon icon={faArrowLeft} />
+          <p>Back to puzzles</p>
+        </Link>
       </div>
-      <h1>Puzzle</h1>
-      <div className='flex flex-col py-6'>
+      <div className='flex justify-center items-center gap-4 self-stretch'>
+        <h1 className='text-center lg:text-4xl text-2xl font-christmas'>{data.title}</h1>
+        <Link href={`/puzzle/${id}/ranking`}>
+          <div className='flex justify-center items-center bg-yellow-500 text-yellow-900 gap-2 p-2 rounded-full filter drop-shadow-md'>
+            <FontAwesomeIcon icon={faTrophy} />
+            <p>Ranking</p>
+          </div>
+        </Link>
+      </div>
+      <div className='flex flex-col pt-4'>
         <PuzzleContextProvider width={data.size} height={data.size} currentState={randomState}>
           <PuzzleGame 
             puzzleInfo={data}
