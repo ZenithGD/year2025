@@ -11,6 +11,7 @@ import OptionsModal from './optionsModal';
 import { AnimatePresence, motion } from 'motion/react';
 import { formatMsTime } from '@/src/utils/misc';
 import { solveAStar, manhattanHeuristic } from '@/src/lib/solve';
+import SolvedModal from './SolvedModal';
 
 interface Props {
   puzzleInfo: PuzzleRowType,
@@ -22,13 +23,15 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
 
   // the array of images
   const [cells, setCells] = useState<string[]>([]);
+  const [cropped, setCropped] = useState<string>("");
 
   // the puzzle state context
   const { puzzle } = usePuzzleContext()
 
   const [showSettingsModal, setShowSettingsModal] = useState(false);
+  const [showSolvedModal, setShowSolvedModal] = useState(false);
 
-  const [startTimeMs, setStartTimeMs] = useState(0)
+  const [solveTS, setSolveTS] = useState(0)
   const [elapsedTimeMs, setElapsedTimeMs] = useState(0)
   const [active, setActive] = useState(false)
 
@@ -48,24 +51,14 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
 
   // Function to stop the timer
   const handleStopTimer = () => {
-    setActive(false);
     if (timerIntervalRef.current) {
       clearInterval(timerIntervalRef.current);
       timerIntervalRef.current = null;
     }
-  };
-
-  const handleHint = () => {
-    
-    const sol = solveAStar(puzzle, manhattanHeuristic)
-    console.log(sol)
+    setSolveTS(Date.now() - (startTimeRef.current ?? Date.now()))
+    setActive(false); // Ensure the active state is updated
   }
 
-  const handleSolution = () => {
-    
-    const sol = solveAStar(puzzle, manhattanHeuristic)
-    console.log(sol)
-  }
   /**
    * Mutation to check for changes in the state of the puzzle images
    */
@@ -78,8 +71,9 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
         body: JSON.stringify({ imagePath, gridSize }),
       }).then(r => r.json());
     },
-    onSuccess: (data: { cells: string[] }) => {
+    onSuccess: (data: { cells: string[], cropped: string }) => {
       setCells(data.cells.slice(0, -1));
+      setCropped(data.cropped.slice(0, -1));
 
       handleStartTimer()
     },
@@ -98,12 +92,25 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
 
   // Cleanup the timer when the component unmounts
   useEffect(() => {
+    if ( puzzle.isSolved() )
+    {
+      onSolve()
+    }
+
     return () => {
       if (timerIntervalRef.current) {
         clearInterval(timerIntervalRef.current);
       }
     };
   }, []);
+
+  // onSolve function
+  const onSolve = () => {
+    handleStopTimer();
+
+    // show modal
+    setShowSolvedModal(true)
+  };
 
   // Trigger image processing when the component mounts
   useEffect(() => {
@@ -137,6 +144,8 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
               cells={cells}
               puzzleWidth={puzzleWidth}
               cellGap={cellGap}
+              onSolve={onSolve}
+              active={active}
             />
           </div>
           <button
@@ -176,6 +185,26 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
             exit={{ opacity: 0 }}
           >
             <OptionsModal closeModal={() => setShowSettingsModal(false)} />
+          </motion.div>
+        </AnimatePresence>
+        ,
+        document.body
+      )}
+
+      {createPortal(
+        showSolvedModal &&
+        <AnimatePresence mode='wait'>
+          <motion.div
+            className='fixed top-0 left-0 h-screen w-screen z-50 flex justify-center items-center backdrop-blur-sm'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <SolvedModal 
+              id={puzzleInfo.id} 
+              solveTS={solveTS}
+              cropped={cropped} 
+              closeModal={() => setShowSolvedModal(false)} />
           </motion.div>
         </AnimatePresence>
         ,

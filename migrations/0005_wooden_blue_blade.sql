@@ -1,0 +1,1 @@
+ALTER TABLE `ranking` ALTER COLUMN "solveTS" TO "solveTS" integer NOT NULL;

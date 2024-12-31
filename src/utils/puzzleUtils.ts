@@ -57,6 +57,22 @@ export function generateShuffleState(n: number)
   }
   state[n * n - 1] = 0
 
+  if (n === 2)
+  {
+    // special case for n == 2
+    const cases = [
+      [1, 2, 0, 3],
+      [1, 0, 3, 2],
+      [0, 1, 3, 2],
+      [0, 2, 1, 3],
+      [2, 0, 1, 3],
+      [3, 1, 0, 2]
+    ]
+    
+    const it = Math.floor(Math.random() * cases.length)
+    return cases[it]
+  }
+
   // shuffle array with FY
   for (let i = n * n - 1; i >= 0; i--)
   {

@@ -25,7 +25,7 @@ export default async function Home(props: {
         </p>
         <Link
           href="/puzzle"
-          className='bg-gradient-to-t from-green-700 to-green-600 divide-x flex justify-between items-center p-1 bg-green-600 hover:from-green-600 hover:to-green-500 rounded-md'
+          className='filter drop-shadow-md bg-gradient-to-t from-green-700 to-green-600 divide-x flex justify-between items-center p-1 bg-green-600 hover:from-green-600 hover:to-green-500 rounded-md'
         >
           <p className='self-center w-full text-green-100 font-bold flex-grow px-2'>{dictionary.goToPuzzles}</p>
           <FontAwesomeIcon className='text-green-100  aspect-square pl-3 p-2' icon={faArrowRight} />

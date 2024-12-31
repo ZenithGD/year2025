@@ -15,9 +15,8 @@ export type PuzzleRowInsertType = typeof puzzle.$inferInsert;
 export const ranking = sqliteTable("ranking", {
   id: integer('id').references(() => puzzle.id).notNull(),
   uname: text('uname').notNull(),
-  solveTS: text('solveTS')
+  solveTS: integer('solveTS')
   .notNull()
-  .default(sql`(current_timestamp)`)
 }, ranking => ({
     pk: primaryKey({ columns: [ranking.id, ranking.uname] })
   })

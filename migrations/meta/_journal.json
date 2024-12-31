@@ -36,6 +36,13 @@
       "when": 1735342555830,
       "tag": "0004_mysterious_fallen_one",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1735668554364,
+      "tag": "0005_wooden_blue_blade",
+      "breakpoints": true
     }
   ]
 }

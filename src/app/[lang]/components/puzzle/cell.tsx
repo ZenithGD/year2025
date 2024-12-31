@@ -16,10 +16,11 @@ type Props = {
   highlightCorrect: boolean,
   size: number,
   gap: number,
-  interactable: () => boolean
+  onSolve: () => void,
+  active: boolean
 }
 
-function PuzzleCell({ image, id, showId, highlightCorrect, size, gap, interactable }: Props) {
+function PuzzleCell({ image, id, showId, highlightCorrect, size, gap, onSolve, active }: Props) {
 
   const { puzzle } = usePuzzleContext()
   const [scope, animate] = useAnimate()
@@ -57,10 +58,8 @@ function PuzzleCell({ image, id, showId, highlightCorrect, size, gap, interactab
   const handleMove: React.MouseEventHandler<HTMLButtonElement> = (e) => {
     e.preventDefault()
 
-    console.log(interactable())
-
-    if (!interactable())
-      console.log("Already solved!!")
+    if ( !active )
+      return
 
     // change puzzle state
     try {
@@ -78,9 +77,11 @@ function PuzzleCell({ image, id, showId, highlightCorrect, size, gap, interactab
         },
         { duration: 0.2, ease: "easeInOut" }
       )
-
+      
+      // solved, callback from top component
       if (solved) {
-        toast.success("Puzzle solved!")
+        toast.success("Puzzle solved")
+        onSolve()
       }
     }
     catch {
