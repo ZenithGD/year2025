@@ -22,6 +22,8 @@ export default async function Home(props: {
         <h1 className='text-center font-bold lg:text-4xl text-2xl font-christmas'>{dictionary.happyNewYear}</h1>
         <p className="text-center">
           {dictionary.introText}
+          <br/>
+          {dictionary.instructions}
         </p>
         <Link
           href="/puzzle"

@@ -4,7 +4,11 @@
     "goToPuzzles": "Go to puzzles",
     "puzzles": "Puzzles",
     "goToRanking": "Rankings",
-    "introText": "en/diadhoahdohadhohada",
+    "introText": "en/diadhoahdohadhohadaes\nIn order to play the game, select a puzzle first. Then, click on the cell you want to move to the blank. The puzzle will be solved when the original image is reconstructed.",
+    "instructions": "In order to play the game, select a puzzle first. Then, click on the cell you want to move to the blank. The puzzle will be solved when the original image is reconstructed.",
     "bestTime": "Best time",
-    "backToPuzzle": "Go back to puzzles"
+    "backToPuzzle": "Go back to puzzles",
+    "enterName": "Write your nickname",
+    "fetchingPInfo": "Fetching puzzle info...",
+    "processing": "Processing puzzle image..."
 }

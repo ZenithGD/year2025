@@ -5,6 +5,10 @@
     "puzzles": "Puzzles",
     "goToRanking": "Clasiffications",
     "introText": "fr/diadhoahdohadhohada",
+    "instructions": "Pour jouer au jeu, choisis un puzzle. Après ça, clique sur la cellule que tu veux déplacer au trou. Le puzzle sera résolu quand l'image originale est reconstitué",
     "bestTime": "Meilleur chrono",
-    "backToPuzzle": "Rétourner aux puzzles"
+    "backToPuzzle": "Rétourner aux puzzles",
+    "enterName": "Écris ton pseudo",
+    "fetchingPInfo": "Chargement de l'info des puzzles",
+    "processing": "Traitement de l'image du puzzle"
 }

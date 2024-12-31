@@ -16,19 +16,19 @@ function Credits({}: Props) {
         name="Spain icons"
         author="Flaticon"
         url="https://www.flaticon.com/free-icons/spain"
-        asset="/images/flags/spain.png"
+        asset="/images/flags/es.png"
       />
       <CreditsCard
         name="UK Flag icons"
         author="Flaticon"
         url="https://www.flaticon.com/free-icons/uk-flag"
-        asset="/images/flags/united-kingdom.png"
+        asset="/images/flags/en.png"
       />
       <CreditsCard
         name="France icons"
         author="Flaticon"
         url="https://www.flaticon.com/free-icons/france"
-        asset="/images/flags/france.png"
+        asset="/images/flags/fr.png"
       />
     </div>
   )

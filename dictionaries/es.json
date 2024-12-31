@@ -5,6 +5,10 @@
     "puzzles": "Puzzles",
     "goToRanking": "Clasificaciones",
     "introText": "es/diadhoahdohadhohada",
+    "instructions": "Para jugar al juego, primero selecciona un puzzle. Después, pulsa la celda que quieres mover al hueco. El puzzle estará resuelto cuando se vea la imagen original. ",
     "bestTime": "Mejor tiempo",
-    "backToPuzzle": "Volver a los puzzles"
+    "backToPuzzle": "Volver a los puzzles",
+    "enterName": "Escribe tu nombre de usuario",
+    "fetchingPInfo": "Cargando información de los puzzles...",
+    "processing": "Procesando imagen del puzzle..."
 }

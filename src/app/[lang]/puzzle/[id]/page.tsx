@@ -15,6 +15,7 @@ import { MAX_MOBILE_WIDTH, MAX_TABLET_WIDTH, puzzleWidth } from '@/src/utils/mis
 import { generateShuffleState } from '@/src/utils/puzzleUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faTrophy } from '@fortawesome/free-solid-svg-icons';
+import { useDictionary } from '../../context/i18n/dictionaryProvider';
 
 type Props = {
 }
@@ -35,6 +36,8 @@ function PuzzlePageComponent({ }: Props) {
   const params = useParams<{ id: string }>()
   const id = parseInt(params["id"])
 
+  const dictionary = useDictionary()
+
   const isMobile = useMediaQuery({ query: `(max-width: ${MAX_MOBILE_WIDTH}px)` })
   const isTablet = useMediaQuery({ query: `(max-width: ${MAX_TABLET_WIDTH}px)` })
 
@@ -48,13 +51,13 @@ function PuzzlePageComponent({ }: Props) {
   if (isError)
     {
       return (
-        <p>Error: {error?.message}</p>
+        <p>{error?.message}</p>
       )
     }
   if (isPending)
     {
       return (
-        <p>Fetching puzzle info...</p>
+        <p>{dictionary.fetchingPInfo}</p>
       )
   }
   
@@ -66,7 +69,7 @@ function PuzzlePageComponent({ }: Props) {
       <div>
         <Link href="/puzzle" className='flex items-center gap-2 mb-4 text-pretty word-break'>
           <FontAwesomeIcon icon={faArrowLeft} />
-          <p>Back to puzzles</p>
+          <p>{dictionary.backToPuzzle}</p>
         </Link>
       </div>
       <div className='flex justify-center items-center gap-4 self-stretch'>

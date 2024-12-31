@@ -9,6 +9,7 @@ import Link from 'next/link'
 import { useDictionary } from '../../context/i18n/dictionaryProvider'
 import Image from 'next/image'
 import { formatMsTime } from '@/src/utils/misc'
+import { savePuzzleData } from '@/src/services/storageService'
 
 // Utility function to make a POST request
 async function postRanking(id: number, uname: string, solveTS: number) {
@@ -40,10 +41,19 @@ function SolvedModal({ id, solveTS, cropped, closeModal }: Props) {
 
   const handleClick = () => {
     postRanking(id, name.trim(), solveTS);
+
+    // now store local data
+    savePuzzleData({
+      id,
+      done: true,
+      hints: 0,
+      autoSolve: false,
+      time: solveTS
+    })
   };
 
   return (
-    <div className='relative lg:w-96 w-72 flex flex-col items-center gap-4 rounded-lg bg-gradient-to-t from-green-600 to-green-500 p-4'>
+    <div className='relative lg:w-96 w-84 flex flex-col items-center gap-4 rounded-lg bg-gradient-to-t from-green-600 to-green-500 p-4'>
       <div className='absolute top-4 left-4'>
         <button
           onClick={closeModal}
@@ -51,7 +61,7 @@ function SolvedModal({ id, solveTS, cropped, closeModal }: Props) {
           <FontAwesomeIcon icon={faClose} />
         </button>
       </div>
-      <h2 className='font-bold'>You solved the puzzle in {formatMsTime(solveTS)} ms!</h2>
+      <h2 className='font-bold w-1/2 break-words'>You solved the puzzle in {formatMsTime(solveTS)} ms!</h2>
       <div className='relative h-48 w-48'>
         <Image
           src={`data:image/png;base64,${cropped}`}
@@ -63,7 +73,7 @@ function SolvedModal({ id, solveTS, cropped, closeModal }: Props) {
 
       <input
         type="text"
-        placeholder="Enter your name"
+        placeholder={dictionary.enterName}
         value={name}
         onChange={(e) => setName(e.target.value)}
         className='w-full text-black px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500'
