@@ -31,15 +31,12 @@ export function isSolvable(state: number[], n: number): boolean
 {
   const iv = countInversions(state)
   const blankIndex = state.indexOf(0);
-  const blankRowFromBottom = n - Math.floor(blankIndex / n);
+  const blankRowFromTop = Math.floor(blankIndex / n);
 
   if (n % 2 === 1) {
-    // Odd grid: solvable if inversion count is even
     return iv % 2 === 0;
   } else {
-    // Even grid: solvable if (row from bottom is even and inversion count is odd)
-    // OR (row from bottom is odd and inversion count is even)
-    return (blankRowFromBottom % 2 === 0) || (iv % 2 === 1);
+    return (blankRowFromTop + iv) % 2 === 0
   }
 }
 
