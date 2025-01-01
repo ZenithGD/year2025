@@ -123,7 +123,7 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
 
   if (processImageMutation.isError) {
     return (
-      <p>Error: {processImageMutation.error?.message}</p>
+      <p>{processImageMutation.error?.message}</p>
     )
   }
 
@@ -156,7 +156,7 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
             onClick={() => setShowSettingsModal(true)}
             className='bg-gradient-to-t from-green-700 to-green-600 flex justify-center items-center w-full p-1 bg-green-600 hover:from-green-600 hover:to-green-500 rounded-md'
           >
-            <p className='self-center text-green-100 font-bold'>Settings</p>
+            <p className='self-center text-green-100 font-bold'>{dictionary.puzzle.settings.label}</p>
             <FontAwesomeIcon className='text-green-100 aspect-square pl-2 p-2' icon={faCog} />
           </button>
           {/* Not finishing this in time... */}

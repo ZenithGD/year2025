@@ -81,7 +81,7 @@ function PuzzlePageComponent({ }: Props) {
           <p>{dictionary.backToPuzzle}</p>
         </Link>
       </div>
-      <div className='flex justify-center items-center gap-4 self-stretch'>
+      <div className='flex justify-center items-center gap-4 self-stretch mb-4'>
         <h1 className='text-center lg:text-4xl text-2xl font-christmas'>{getTitleWithLocale(data, locale)}</h1>
         <Link href={`/puzzle/${id}/ranking`}>
           <div className='flex justify-center items-center bg-yellow-500 text-yellow-900 gap-2 p-2 rounded-full filter drop-shadow-md'>
@@ -90,7 +90,7 @@ function PuzzlePageComponent({ }: Props) {
           </div>
         </Link>
       </div>
-      <p className='lg:w-1/2 w-full text-pretty text-justify'>{data.description}</p>
+      <p className='self-center lg:w-1/2 w-full text-pretty text-center'>{data.description}</p>
       <div className='flex flex-col pt-4 gap-4'>
         <PuzzleContextProvider width={data.size} height={data.size} currentState={randomState}>
           <PuzzleGame 

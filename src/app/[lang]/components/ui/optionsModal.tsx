@@ -1,13 +1,17 @@
+"use client"
 import { useAnimate } from 'motion/react'
 import React from 'react'
 import Switch from './switch'
 import { usePuzzleContext } from '@/src/app/[lang]/context/puzzle/puzzleContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faClose } from '@fortawesome/free-solid-svg-icons'
+import { useDictionary } from '../../context/i18n/dictionaryProvider'
 
 type Props = { closeModal: () => void }
 
 function OptionsModal({ closeModal }: Props) {
+
+  const { dictionary } = useDictionary()
 
   const { showId, setShowId, highlightCorrect, setHighlightCorrect } = usePuzzleContext()
   
@@ -20,13 +24,13 @@ function OptionsModal({ closeModal }: Props) {
           <FontAwesomeIcon icon={faClose} />
         </button>
       </div>
-      <h2 className='font-bold'>Options</h2>
+      <h2 className='font-bold'>{dictionary.puzzle.settings.label}</h2>
       <div className='flex self-stretch justify-between gap-2'>
-        <p>Show cell numbers</p>
+        <p>{dictionary.puzzle.settings.showId}</p>
         <Switch value={showId} toggleValue={() => setShowId(!showId)} /> 
       </div>
       <div className='flex self-stretch justify-between gap-2'>
-        <p>Highlight cells in correct place</p>
+        <p>{dictionary.puzzle.settings.highlight}</p>
         <Switch value={highlightCorrect} toggleValue={() => setHighlightCorrect(!highlightCorrect)} /> 
       </div>
     </div>

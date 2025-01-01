@@ -32,6 +32,11 @@
     "puzzle": {
         "solvedMsg": "You solved the puzzle in",
         "illegalMove": "¡Move not allowed!",
-        "solved": "¡Puzzle solved!"
+        "solved": "¡Puzzle solved!",
+        "settings": {
+            "label": "Options",
+            "showId": "Show cell numbers",
+            "highlight": "Highlight cells in correct place"
+        }
     }
 }

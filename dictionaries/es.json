@@ -32,6 +32,11 @@
     "puzzle": {
         "solvedMsg": "¡Has resuelto el puzzle en",
         "illegalMove": "¡Movimiento no permitido!",
-        "solved": "¡Puzzle resuelto!"
+        "solved": "¡Puzzle resuelto!",
+        "settings": {
+            "label": "Opciones",
+            "showId": "Mostrar números de celda",
+            "highlight": "Resaltar celdas en el lugar correcto"
+        }
     }
 }
