@@ -54,7 +54,7 @@ export async function POST(req: Request) {
       }
     }
 
-    return NextResponse.json({ cells, cropped : cropped.toString('base64') });
+    return NextResponse.json({ cells, original : "/images/" + imagePath, cropped : cropped.toString('base64') });
   } catch (err: unknown) {
     const error = err instanceof Error ? err.message : 'Unknown error';
     console.log()

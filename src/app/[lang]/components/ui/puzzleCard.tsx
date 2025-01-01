@@ -25,7 +25,7 @@ function PuzzleCard({ puzzleData }: Props) {
   return (
     <div
       onClick={() => router.push(`/puzzle/${puzzleData.id}`)}
-      className='cursor-pointer relative flex flex-col h-full lg:w-64 md:w-48 w-32 bg-green-300 rounded-lg filter shadow-lg hover:scale-105 transition duration-100'>
+      className='cursor-pointer relative flex flex-col h-full lg:w-64 md:w-56 w-32 bg-green-300 rounded-lg filter shadow-lg hover:scale-105 transition duration-100'>
       <div className='w-full aspect-square'>
         <div className='relative w-full h-full'>
           <Image
@@ -49,12 +49,12 @@ function PuzzleCard({ puzzleData }: Props) {
             )
             : (nr.map((e, key) => <FontAwesomeIcon key={key} icon={faStar} />))  }
         </div>
-        <div className="bg-red-400 rounded-b-lg p-4 flex flex-col gap-2 items-center">
-          <p className='text-red-900 font-bold lg:text-xl text-lg line-clamp-2 text-pretty break-all'>{puzzleData.title}</p>
+        <div className="bg-red-400 rounded-b-lg p-4 flex flex-col h-full gap-2 items-center">
+          <p className='text-red-900 font-bold lg:text-lg text-md line-clamp-2 text-pretty break-all'>{puzzleData.title}</p>
           <div className='flex justify-between items-center text-lg gap-2'>
             <FontAwesomeIcon icon={faStopwatch} />
-            <p className='md:block hidden'>{dictionary.bestTime}</p>
-            <p className='text-red-800'>
+            <p className='md:block hidden line-clamp-1 text-sm'>{dictionary.bestTime}</p>
+            <p className='text-red-800 text-sm'>
               {formatMsTime(puzzleData.saveData.time)}
             </p>
           </div>

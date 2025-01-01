@@ -43,14 +43,15 @@ async function PuzzleRanking({params}: Props) {
       .orderBy(asc(ranking.solveTS))])
 
   return (
-    <div className='flex flex-col items-center self-center h-full w-full'>
-      <div>
+    <div className='flex flex-col self-center h-full w-full'>
+      <div className='self-start'>
         <Link href={`/puzzle/${id}`} className='flex items-center gap-2 mb-4 text-pretty word-break'>
           <FontAwesomeIcon icon={faArrowLeft} />
           <p>{dictionary.backToPuzzle}</p>
         </Link>
       </div>
       <h1 className='text-center lg:text-4xl text-2xl font-christmas mb-4'>{puzzleData[0].title}</h1>
+      <div className='flex w-full justify-center'>
       <ul className='flex flex-col pb-4 gap-2 lg:w-1/2 w-full'>
       {puzzleRanking.map((r : RankingRowType, key: number) => (
         <li key={key} className="flex gap-1 text-green-950 justify-between bg-green-500 rounded-md filter drop-shadow-md">
@@ -71,6 +72,8 @@ async function PuzzleRanking({params}: Props) {
         </li>
       ))}
       </ul>
+      </div>
+      
     </div>
   )
 }

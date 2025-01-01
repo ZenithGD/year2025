@@ -12,6 +12,7 @@ import { Geist, Geist_Mono, Henny_Penny } from "next/font/google";
 import { i18n, Locale } from "@/i18n-config";
 import { getDictionary } from "@/get-dictionary";
 import DictionaryProvider from "./context/i18n/dictionaryProvider";
+import Footer from "./components/ui/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -52,10 +53,12 @@ export default async function LocaleLayout({
           <SpeedInsights />
           <Toaster position="bottom-right" />
           <Nav />
-          <main className="bg-green-900 min-h-screen w-full flex flex-col p-8 mt-16">
-            {children}
-          </main>
-
+          <div className="flex flex-col min-h-screen">
+            <main className="bg-green-900 w-full flex flex-col p-8 mt-16 flex-grow">
+              {children}
+            </main>
+            <Footer dictionary={dictionary}/>
+            </div>
         </DictionaryProvider>
       </body>
     </html>

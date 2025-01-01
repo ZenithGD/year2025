@@ -16,12 +16,16 @@ export default async function Home(props: {
   const dictionary = await getDictionary(lang);
 
   return (
-    <div className="items-center justify-items-center min-h-screen">
+    <div className="items-center justify-items-center">
       <main className="flex flex-col gap-8 items-center">
         <SnowOverlay maxParticles={75} disabledOnSingleCpuDevices/>
         <h1 className='text-center font-bold lg:text-4xl text-2xl font-christmas'>{dictionary.happyNewYear}</h1>
         <p className="text-center lg:w-1/2 w-full text-pretty">
-          {dictionary.introText}
+          {dictionary.introText.p1}
+          <br />
+          {dictionary.introText.p2}
+          <br/>
+          {dictionary.introText.p3}
           <br/>
           {dictionary.instructions}
         </p>

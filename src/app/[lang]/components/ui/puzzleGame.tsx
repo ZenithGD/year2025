@@ -71,9 +71,9 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
         body: JSON.stringify({ imagePath, gridSize }),
       }).then(r => r.json());
     },
-    onSuccess: (data: { cells: string[], cropped: string }) => {
+    onSuccess: (data: { cells: string[], original: string, cropped: string }) => {
       setCells(data.cells.slice(0, -1));
-      setCropped(data.cropped.slice(0, -1));
+      setCropped(data.original);
 
       handleStartTimer()
     },

@@ -122,11 +122,9 @@ function PuzzleCell({ image, id, showId, highlightCorrect, size, gap, onSolve, a
             transition={{ duration: 0.3 }}
           >
             <motion.div
-              className={cn(
-                'absolute top-0 left-0 h-8 w-8 p-2 rounded-tl-md rounded-br-md flex justify-center items-center text-green-950 text-center font-extrabold'
-              )}
+              className='absolute top-0 left-0 h-8 w-8 p-2 rounded-tl-md rounded-br-md flex justify-center items-center text-green-950 text-center font-extrabold'
               animate={{
-                backgroundColor: puzzle.correctlyPlaced(id)
+                backgroundColor: !highlightCorrect || puzzle.correctlyPlaced(id)
                   ? 'rgb(134 239 172)'
                   : 'rgb(220 38 38)',
                 opacity: 1
@@ -143,12 +141,12 @@ function PuzzleCell({ image, id, showId, highlightCorrect, size, gap, onSolve, a
           <motion.div
             className={cn(
               'absolute top-0 left-0 h-full w-full p-2 rounded-md flex justify-center items-center text-green-950 text-center font-extrabold',
-              'border-4' // Ensure base border width is included
+              'border-4'
             )}
             initial={{ opacity: 0 }}
             exit={{ opacity: 0 }}
             animate={{
-              borderColor: puzzle.correctlyPlaced(id) ? 'rgb(134 239 172)' : 'rgb(220 38 38)', opacity: 1// Tailwind colors in RGB
+              borderColor: !highlightCorrect || puzzle.correctlyPlaced(id) ? 'rgb(134 239 172)' : 'rgb(220 38 38)', opacity: 1// Tailwind colors in RGB
             }}
           >
           </motion.div>

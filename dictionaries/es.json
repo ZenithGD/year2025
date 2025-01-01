@@ -4,7 +4,11 @@
     "goToPuzzles": "Ir a los puzzles",
     "puzzles": "Puzzles",
     "goToRanking": "Clasificaciones",
-    "introText": "es/diadhoahdohadhohada",
+    "introText": {
+        "p1": "En las primeras horas del nuevo año, mi mayor deseo es un mundo en armonía.",
+        "p2": "Con 5 imágenes y un juego de puzzle te quiero invitar a jugar por la PAZ, la FRATERNIDAD, la DEMOCRACIA, el MEDIOAMBIENTE y la SALUD.",
+        "p3": "Que cada uno de nosotros seamos capaces de contribuir con nuestro compromiso a esos deseos."
+    },
     "instructions": "Para jugar al juego, primero selecciona un puzzle. Después, pulsa la celda que quieres mover al hueco. El puzzle estará resuelto cuando se vea la imagen original y el hueco se sitúe en la esquina inferior derecha. Una vez resuelto, podrás comprobar el tiempo que has tardado y compararlo con el resto de usuarios.",
     "bestTime": "Mejor tiempo",
     "backToPuzzle": "Volver a los puzzles",
@@ -12,13 +16,19 @@
     "fetchingPInfo": "Cargando información de los puzzles...",
     "processing": "Procesando imagen del puzzle...",
     "allPuzzles": "Todos los puzzles",
+    "madeBy": "Creado por",
+    "credits": "Créditos",
     "menu": {
         "label": "Menú",
         "puzzles": "Puzzles",
-        "howto": "Entre bastidores"
+        "howto": "Entre bastidores",
+        "credits": "Créditos"
     },
     "notFound": {
         "title": "¡Página no encontrada!",
         "text": "Esta página no existe. Vuelve a la página de los puzzles pulsando el botón."
+    },
+    "puzzle": {
+        "solvedMsg": "¡Has resuelto el puzzle en"
     }
 }

@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import Switch from './switch'
 import { usePuzzleContext } from '@/src/app/[lang]/context/puzzle/puzzleContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faArrowRight, faClose } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRight, faClose, faPuzzlePiece, faTrophy } from '@fortawesome/free-solid-svg-icons'
 import Link from 'next/link'
 import { useDictionary } from '../../context/i18n/dictionaryProvider'
 import Image from 'next/image'
@@ -61,12 +61,13 @@ function SolvedModal({ id, solveTS, cropped, closeModal }: Props) {
           <FontAwesomeIcon icon={faClose} />
         </button>
       </div>
-      <h2 className='font-bold w-1/2 break-words'>You solved the puzzle in {formatMsTime(solveTS)} ms!</h2>
-      <div className='relative h-48 w-48'>
+      <h2 className='font-bold w-1/2 break-words'>{dictionary.puzzle.solvedMsg} {formatMsTime(solveTS)}!</h2>
+      <div className='relative h-48 w-full'>
         <Image
-          src={`data:image/png;base64,${cropped}`}
+          src={cropped}
           alt="cropped"
           layout="fill"
+          objectFit="contain"
           className="rounded-lg"
         />
       </div>
@@ -86,7 +87,7 @@ function SolvedModal({ id, solveTS, cropped, closeModal }: Props) {
           className={`flex self-stretch flex-1 flex-grow filter drop-shadow-md bg-gradient-to-t from-green-700 to-green-600 divide-x justify-between items-center p-1 bg-green-600 hover:from-green-600 hover:to-green-500 rounded-md ${name.trim() ? '' : 'opacity-50 pointer-events-none'}`}
         >
           <p className='self-center w-full text-green-100 font-bold flex-grow px-2'>{dictionary.puzzles}</p>
-          <FontAwesomeIcon className='text-green-100 aspect-square pl-3 p-2' icon={faArrowRight} />
+          <FontAwesomeIcon className='text-green-100 aspect-square pl-3 p-2' icon={faPuzzlePiece} />
         </Link>
         <Link
           href={`/puzzle/${id}/ranking`}
@@ -94,7 +95,7 @@ function SolvedModal({ id, solveTS, cropped, closeModal }: Props) {
           className={`flex self-stretch flex-1 flex-grow filter drop-shadow-md bg-gradient-to-t from-green-700 to-green-600 divide-x justify-between items-center p-1 bg-green-600 hover:from-green-600 hover:to-green-500 rounded-md ${name.trim() ? '' : 'opacity-50 pointer-events-none'}`}
         >
           <p className='self-center w-full text-green-100 font-bold flex-grow px-2'>{dictionary.goToRanking}</p>
-          <FontAwesomeIcon className='text-green-100 aspect-square pl-3 p-2' icon={faArrowRight} />
+          <FontAwesomeIcon className='text-green-100 aspect-square pl-3 p-2' icon={faTrophy} />
         </Link>
       </div>
       

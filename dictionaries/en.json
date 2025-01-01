@@ -4,7 +4,11 @@
     "goToPuzzles": "Go to puzzles",
     "puzzles": "Puzzles",
     "goToRanking": "Rankings",
-    "introText": "en/diadhoahdohadhohadaes\nIn order to play the game, select a puzzle first. Then, click on the cell you want to move to the blank. The puzzle will be solved when the original image is reconstructed.",
+    "introText": {
+        "p1": "In the early hours of this new year, a world in harmony is my greatest wish.",
+        "p2": "With 5 images and a puzzle game, I invite you to play it for PEACE, FRATERNITY, DEMOCRACY, the ENVIRONMENT and our HEALTH.",
+        "p3": "Let's hope that each one of us is able to contribute with our compromise to those wishes."
+    },
     "instructions": "In order to play the game, select a puzzle first. Then, click on the cell you want to move to the blank. The puzzle will be solved when the original image is reconstructed and the blank is located at the bottom right corner. Once you solve the puzzle, you'll be able to check how long it took you, as well as comparing your time with other users.",
     "bestTime": "Best time",
     "backToPuzzle": "Go back to puzzles",
@@ -12,13 +16,19 @@
     "fetchingPInfo": "Fetching puzzle info...",
     "processing": "Processing puzzle image...",
     "allPuzzles": "All puzzles",
+    "madeBy": "Created by",
+    "credits": "Credits",
     "menu": {
         "label": "Menu",
         "puzzles": "Puzzles",
-        "howto": "Behind the scenes"
+        "howto": "Behind the scenes",
+        "credits": "Credits"
     },
     "notFound": {
         "title": "Page not found!",
         "text": "This page doesn't exist. Go back to the puzzle page clicking the button below."
+    },
+    "puzzle": {
+        "solvedMsg": "You solved the puzzle in"
     }
 }
