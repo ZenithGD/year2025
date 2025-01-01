@@ -5,13 +5,15 @@ import React, { useEffect, useRef, useState } from 'react'
 import PuzzleGrid from '../puzzle/grid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheck, faCog, faMagnifyingGlass, faStopwatch } from '@fortawesome/free-solid-svg-icons'
-import { PuzzleRowType } from '@/src/db/schema';
+import { PuzzleRowType } from '@/src/db/tables';
 import { createPortal } from 'react-dom';
 import OptionsModal from './optionsModal';
 import { AnimatePresence, motion } from 'motion/react';
 import { formatMsTime } from '@/src/utils/misc';
 import { solveAStar, manhattanHeuristic } from '@/src/lib/solve';
 import SolvedModal from './SolvedModal';
+import { useDictionary } from '../../context/i18n/dictionaryProvider';
+import LoadingScreen from './loadingScreen';
 
 interface Props {
   puzzleInfo: PuzzleRowType,
@@ -20,6 +22,8 @@ interface Props {
 }
 
 function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
+
+  const { dictionary, locale } = useDictionary()
 
   // the array of images
   const [cells, setCells] = useState<string[]>([]);
@@ -125,7 +129,7 @@ function PuzzleGame({ puzzleInfo, puzzleWidth, cellGap }: Props) {
 
   if (processImageMutation.isIdle || processImageMutation.isPending) {
     return (
-      <p>Processing image...</p>
+      <LoadingScreen message={dictionary.processing} />
     )
   }
 

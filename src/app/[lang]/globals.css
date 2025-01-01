@@ -25,3 +25,10 @@ body {
     font-family: "Henny Penny";
     src: url("/fonts/HennyPenny-Regular.ttf");
 }
+
+br  {
+    display: block;
+    content: "";
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}

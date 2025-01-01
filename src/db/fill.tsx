@@ -1,6 +1,6 @@
 import puzzles from '@/data/puzzles.json';
 import { readFile } from 'fs/promises';
-import { puzzle, PuzzleRowType } from './schema';
+import { puzzle, PuzzleRowType } from './tables';
 import { db } from '.';
 /**
  * Processes JSON data to an array of objects to insert with drizzle

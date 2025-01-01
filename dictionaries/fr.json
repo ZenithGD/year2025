@@ -18,6 +18,7 @@
     "allPuzzles": "Tous les puzzles",
     "madeBy": "Créé par",
     "credits": "Crédits",
+    "rankingUploadErr": "La classification n'a pas pu être mise à jour",
     "menu": {
         "label": "Menu",
         "puzzles": "Puzzles",
@@ -29,6 +30,8 @@
         "text": "Cette page n'existe pas. Rétourne à la page des puzzles en cliquant le bouton ci-dessous."
     },
     "puzzle": {
-        "solvedMsg": "Tu as résolu le puzzle en"
+        "solvedMsg": "Tu as résolu le puzzle en",
+        "illegalMove": "¡Ce coup n'est pas permis!",
+        "solved": "¡Puzzle résolu!"
     }
 }

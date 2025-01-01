@@ -1,21 +1,24 @@
 'use client'
 
 import { getDictionary } from "@/get-dictionary"
+import { Locale } from "@/i18n-config"
 import { createContext, ReactNode, useContext } from "react"
 
 type Dictionary = Awaited<ReturnType<typeof getDictionary>>
 
-const DictionaryContext = createContext<Dictionary | null>(null)
+const DictionaryContext = createContext < { dictionary: Dictionary, locale: Locale } | null >(null)
 
 export default function DictionaryProvider({
   dictionary,
+  locale,
   children,
 }: {
-  dictionary: Dictionary
+  dictionary: Dictionary,
+  locale: Locale,
   children: ReactNode
 }) {
   return (
-    <DictionaryContext.Provider value={dictionary}>
+    <DictionaryContext.Provider value={{ dictionary, locale }}>
       {children}
     </DictionaryContext.Provider>
   )

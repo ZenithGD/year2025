@@ -1,6 +1,6 @@
 import { db } from "@/src/db";
 import { eq, sql } from "drizzle-orm";
-import { puzzle, ranking } from "@/src/db/schema";
+import { puzzle, ranking } from "@/src/db/tables";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(

@@ -1,5 +1,5 @@
 "use client"
-import { puzzle, PuzzleRowType } from '@/src/db/schema'
+import { puzzle, PuzzleRowType } from '@/src/db/tables'
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCheckCircle, faCross, faStar, faStopwatch, faTrophy, faX } from '@fortawesome/free-solid-svg-icons'
 import { PuzzleSaveData } from '@/src/services/storageService'
 import { useDictionary } from '../../context/i18n/dictionaryProvider'
-import { formatMsTime } from '@/src/utils/misc'
+import { formatMsTime, getTitleWithLocale } from '@/src/utils/misc'
 import { useRouter } from 'next/navigation'
 import { motion } from 'motion/react'
 
@@ -17,7 +17,7 @@ type Props = {
 
 function PuzzleCard({ puzzleData }: Props) {
 
-  const dictionary = useDictionary()
+  const { dictionary, locale } = useDictionary()
   const router = useRouter()
 
   const nr = Array.from(new Array(puzzleData.difficulty).keys())
@@ -30,7 +30,7 @@ function PuzzleCard({ puzzleData }: Props) {
         <div className='relative w-full h-full'>
           <Image
             src={`/images/${puzzleData.image}`}
-            alt={puzzleData.title}
+            alt={getTitleWithLocale(puzzleData, locale)}
             layout="fill"
             className='rounded-t-lg border-green-300 object-cover'
           />
@@ -50,7 +50,7 @@ function PuzzleCard({ puzzleData }: Props) {
             : (nr.map((e, key) => <FontAwesomeIcon key={key} icon={faStar} />))  }
         </div>
         <div className="bg-red-400 rounded-b-lg p-4 flex flex-col h-full gap-2 items-center">
-          <p className='text-red-900 font-bold lg:text-lg text-md line-clamp-2 text-pretty break-all'>{puzzleData.title}</p>
+          <p className='text-red-900 font-bold lg:text-lg text-md line-clamp-2 text-pretty break-all'>{getTitleWithLocale(puzzleData, locale)}</p>
           <div className='flex justify-between items-center text-lg gap-2'>
             <FontAwesomeIcon icon={faStopwatch} />
             <p className='md:block hidden line-clamp-1 text-sm'>{dictionary.bestTime}</p>

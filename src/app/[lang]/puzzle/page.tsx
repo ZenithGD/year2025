@@ -1,11 +1,12 @@
 "use client"
 import PuzzleCard from '@/src/app/[lang]/components/ui/puzzleCard';
-import { PuzzleRowType } from '@/src/db/schema';
+import { PuzzleRowType } from '@/src/db/tables';
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import React from 'react'
 
 import { getPuzzleData, PuzzleSaveData, savePuzzleData } from '@/src/services/storageService';
 import { useDictionary } from '../context/i18n/dictionaryProvider';
+import LoadingScreen from '../components/ui/loadingScreen';
 
 type Props = {
 }
@@ -25,7 +26,7 @@ function PuzzleSelectionPage(props: Props)
 
 function PuzzleSelectionPageComponent({ }: Props) {
 
-  const dictionary = useDictionary()
+  const { dictionary, locale } = useDictionary()
 
   const fetchPuzzlesInfo = async () => {
     return await fetch(`/api/puzzle`)
@@ -44,7 +45,7 @@ function PuzzleSelectionPageComponent({ }: Props) {
   if (isPending)
     {
       return (
-        <p>{dictionary.fetchingPInfo}</p>
+        <LoadingScreen message={dictionary.fetchingPInfo} />
       )
   }
  

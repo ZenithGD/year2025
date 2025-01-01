@@ -49,7 +49,7 @@ export default async function LocaleLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <DictionaryProvider dictionary={dictionary}>
+        <DictionaryProvider dictionary={dictionary} locale={awaitedParams.lang}>
           <SpeedInsights />
           <Toaster position="bottom-right" />
           <Nav />

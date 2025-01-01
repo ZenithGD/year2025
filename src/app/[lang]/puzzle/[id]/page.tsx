@@ -10,12 +10,13 @@ import { useParams } from 'next/navigation';
 import PuzzleContextProvider from '@/src/app/[lang]/context/puzzle/puzzleContextProvider';
 import Link from 'next/link';
 import { db } from '@/src/db';
-import { PuzzleRowType } from '@/src/db/schema';
-import { MAX_MOBILE_WIDTH, MAX_TABLET_WIDTH, puzzleWidth } from '@/src/utils/misc';
+import { PuzzleRowType } from '@/src/db/tables';
+import { getTitleWithLocale, MAX_MOBILE_WIDTH, MAX_TABLET_WIDTH, puzzleWidth } from '@/src/utils/misc';
 import { generateShuffleState } from '@/src/utils/puzzleUtils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faTrophy } from '@fortawesome/free-solid-svg-icons';
 import { useDictionary } from '../../context/i18n/dictionaryProvider';
+import LoadingScreen from '../../components/ui/loadingScreen';
 
 type Props = {
 }
@@ -36,7 +37,7 @@ function PuzzlePageComponent({ }: Props) {
   const params = useParams<{ id: string }>()
   let id = params["id"]
 
-  const dictionary = useDictionary()
+  const { dictionary, locale } = useDictionary()
 
   const isMobile = useMediaQuery({ query: `(max-width: ${MAX_MOBILE_WIDTH}px)` })
   const isTablet = useMediaQuery({ query: `(max-width: ${MAX_TABLET_WIDTH}px)` })
@@ -65,7 +66,7 @@ function PuzzlePageComponent({ }: Props) {
   if (isPending)
     {
       return (
-        <p>{dictionary.fetchingPInfo}</p>
+        <LoadingScreen message={dictionary.fetchingPInfo} />
       )
   }
   
@@ -81,15 +82,16 @@ function PuzzlePageComponent({ }: Props) {
         </Link>
       </div>
       <div className='flex justify-center items-center gap-4 self-stretch'>
-        <h1 className='text-center lg:text-4xl text-2xl font-christmas'>{data.title}</h1>
+        <h1 className='text-center lg:text-4xl text-2xl font-christmas'>{getTitleWithLocale(data, locale)}</h1>
         <Link href={`/puzzle/${id}/ranking`}>
           <div className='flex justify-center items-center bg-yellow-500 text-yellow-900 gap-2 p-2 rounded-full filter drop-shadow-md'>
             <FontAwesomeIcon icon={faTrophy} />
-            <p>Ranking</p>
+            <p>{dictionary.goToRanking}</p>
           </div>
         </Link>
       </div>
-      <div className='flex flex-col pt-4'>
+      <p className='lg:w-1/2 w-full text-pretty text-justify'>{data.description}</p>
+      <div className='flex flex-col pt-4 gap-4'>
         <PuzzleContextProvider width={data.size} height={data.size} currentState={randomState}>
           <PuzzleGame 
             puzzleInfo={data}

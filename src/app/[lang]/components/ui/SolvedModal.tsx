@@ -10,20 +10,18 @@ import { useDictionary } from '../../context/i18n/dictionaryProvider'
 import Image from 'next/image'
 import { formatMsTime } from '@/src/utils/misc'
 import { savePuzzleData } from '@/src/services/storageService'
+import toast from 'react-hot-toast'
 
 // Utility function to make a POST request
-async function postRanking(id: number, uname: string, solveTS: number) {
-  try {
+async function postRanking(id: number, uname: string, solveTS: number, message: string) {
+
     await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/puzzle/${id}/ranking`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ uname, solveTS }),
-    });
-  } catch (error) {
-    console.error('Error posting ranking:', error);
-  }
+    }).catch(() => toast.error(message))
 }
 
 type Props = { 
@@ -34,13 +32,18 @@ type Props = {
 }
 
 function SolvedModal({ id, solveTS, cropped, closeModal }: Props) {
-  const dictionary = useDictionary()
+  const { dictionary, locale } = useDictionary()
 
   // State to manage user input
-  const [name, setName] = useState("");
+  const [name, setName] = useState(localStorage.getItem("user") ?? "");
+
+  console.log(localStorage.getItem("user"))
 
   const handleClick = () => {
-    postRanking(id, name.trim(), solveTS);
+    postRanking(id, name, solveTS, dictionary.rankingUploadErr);
+
+    // save name
+    localStorage.setItem("user", name)
 
     // now store local data
     savePuzzleData({

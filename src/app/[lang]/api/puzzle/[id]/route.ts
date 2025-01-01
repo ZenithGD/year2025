@@ -1,6 +1,6 @@
 import { db } from "@/src/db"
 import { eq } from 'drizzle-orm';
-import { puzzle } from "@/src/db/schema"
+import { puzzle } from "@/src/db/tables"
 import { NextRequest, NextResponse } from "next/server"
 
 

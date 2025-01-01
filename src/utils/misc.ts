@@ -1,5 +1,7 @@
 import clsx from "clsx";
 import { twMerge } from "tailwind-merge";
+import { PuzzleRowType } from "../db/tables";
+import { Locale } from "@/i18n-config";
 
 // Equivalent to tailwind `lg` media query
 export const MAX_TABLET_WIDTH = 1024;
@@ -36,4 +38,26 @@ export function formatMsTime(ms: number)
   const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, "0");
 
   return `${minutes}:${seconds}:${millis}`
+}
+
+/**
+ * Get the title according to the system's language locale.
+ * @param row The puzzle row data
+ * @param locale The current locale (es, en, fr)
+ * @returns The title corresponding to the current locale
+ */
+export function getTitleWithLocale(row : PuzzleRowType, locale: Locale) 
+{
+  switch (locale)
+  {
+    case "en":
+
+      return row.en_title
+    case "fr":
+
+      return row.fr_title
+    default:
+
+      return row.es_title
+  }
 }

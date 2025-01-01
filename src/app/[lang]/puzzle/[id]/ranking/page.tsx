@@ -1,8 +1,8 @@
 import { getDictionary } from '@/get-dictionary';
 import { Locale } from '@/i18n-config';
 import { db } from '@/src/db';
-import { puzzle, PuzzleRowType, ranking, RankingRowType } from '@/src/db/schema'
-import { cn, formatMsTime } from '@/src/utils/misc';
+import { puzzle, PuzzleRowType, ranking, RankingRowType } from '@/src/db/tables'
+import { cn, formatMsTime, getTitleWithLocale } from '@/src/utils/misc';
 import { faArrowLeft, faStopwatch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { eq } from 'drizzle-orm';
@@ -50,7 +50,7 @@ async function PuzzleRanking({params}: Props) {
           <p>{dictionary.backToPuzzle}</p>
         </Link>
       </div>
-      <h1 className='text-center lg:text-4xl text-2xl font-christmas mb-4'>{puzzleData[0].title}</h1>
+      <h1 className='text-center lg:text-4xl text-2xl font-christmas mb-4'>{getTitleWithLocale(puzzleData[0], awaitedParams.locale)}</h1>
       <div className='flex w-full justify-center'>
       <ul className='flex flex-col pb-4 gap-2 lg:w-1/2 w-full'>
       {puzzleRanking.map((r : RankingRowType, key: number) => (

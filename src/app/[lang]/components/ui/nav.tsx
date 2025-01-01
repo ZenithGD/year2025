@@ -5,7 +5,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { MAX_MOBILE_WIDTH, MAX_TABLET_WIDTH } from '@/src/utils/misc'
 import { useMediaQuery } from 'react-responsive'
-import { faAward, faBars, faPuzzlePiece, faQuestionCircle, faUser } from '@fortawesome/free-solid-svg-icons'
+import { faAward, faBars, faMagicWandSparkles, faPuzzlePiece, faQuestionCircle, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { AnimatePresence, motion } from 'motion/react'
 import { useDictionary } from '../../context/i18n/dictionaryProvider'
@@ -15,7 +15,7 @@ type Props = {}
 
 function Nav({ }: Props) {
 
-  const dictionary = useDictionary()
+  const { dictionary, locale } = useDictionary()
 
   return (
     <nav className='fixed flex justify-between gap-2 top-0 w-screen h-16 bg-green-800 z-50 shadow-md items-center px-8'>
@@ -50,6 +50,8 @@ function Nav({ }: Props) {
 }
 
 function MobileNavMenu() {
+
+  const { dictionary, locale } = useDictionary()
 
   const [open, setOpen] = useState(false)
 
@@ -87,7 +89,7 @@ function MobileNavMenu() {
       >
 
         <FontAwesomeIcon icon={faBars} />
-        <p>Menú</p>
+        <p>{dictionary.menu.label}</p>
       </button>
       <AnimatePresence>
         {open &&
@@ -100,15 +102,15 @@ function MobileNavMenu() {
           >
             <Link href="/puzzle" className="p-2 flex items-center gap-1 w-full hover:bg-green-100/40 rounded-md">
               <FontAwesomeIcon className="w-6" icon={faPuzzlePiece} />
-              <p>Puzzles</p>
+              <p>{dictionary.menu.puzzles}</p>
             </Link>
             <Link href="/credits" className="p-2 flex items-center gap-1 w-full hover:bg-green-100/40 rounded-md">
               <FontAwesomeIcon className="w-6" icon={faUser} />
-              <p>Credits</p>
+              <p>{dictionary.menu.credits}</p>
             </Link>
             <Link href="/howto" className="p-2 flex items-center gap-1 w-full hover:bg-green-100/40 rounded-md">
-              <FontAwesomeIcon className="w-6" icon={faQuestionCircle} />
-              <p>Behind the scenes</p>
+              <FontAwesomeIcon className="w-6" icon={faMagicWandSparkles} />
+              <p>{dictionary.menu.howto}</p>
             </Link>
           </motion.div>
         }

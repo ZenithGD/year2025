@@ -18,6 +18,7 @@
     "allPuzzles": "All puzzles",
     "madeBy": "Created by",
     "credits": "Credits",
+    "rankingUploadErr": "Couldn't update the rankings",
     "menu": {
         "label": "Menu",
         "puzzles": "Puzzles",
@@ -29,6 +30,8 @@
         "text": "This page doesn't exist. Go back to the puzzle page clicking the button below."
     },
     "puzzle": {
-        "solvedMsg": "You solved the puzzle in"
+        "solvedMsg": "You solved the puzzle in",
+        "illegalMove": "¡Move not allowed!",
+        "solved": "¡Puzzle solved!"
     }
 }

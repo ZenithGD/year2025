@@ -17,10 +17,10 @@ export default async function Home(props: {
 
   return (
     <div className="items-center justify-items-center">
-      <main className="flex flex-col gap-8 items-center">
+      <main className="flex flex-col gap-6 items-center">
         <SnowOverlay maxParticles={75} disabledOnSingleCpuDevices/>
         <h1 className='text-center font-bold lg:text-4xl text-2xl font-christmas'>{dictionary.happyNewYear}</h1>
-        <p className="text-center lg:w-1/2 w-full text-pretty">
+        <p className="lg:w-1/2 w-full text-pretty text-justify">
           {dictionary.introText.p1}
           <br />
           {dictionary.introText.p2}

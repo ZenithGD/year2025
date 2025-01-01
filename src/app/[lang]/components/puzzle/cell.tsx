@@ -8,6 +8,7 @@ import { usePuzzleContext } from '@/src/app/[lang]/context/puzzle/puzzleContext'
 import toast from 'react-hot-toast'
 import { useMediaQuery } from 'react-responsive'
 import { manhattanHeuristic, solveAStar } from '@/src/lib/solve'
+import { useDictionary } from '../../context/i18n/dictionaryProvider'
 
 type Props = {
   image: string,
@@ -22,6 +23,7 @@ type Props = {
 
 function PuzzleCell({ image, id, showId, highlightCorrect, size, gap, onSolve, active }: Props) {
 
+  const { dictionary, locale } = useDictionary()
   const { puzzle } = usePuzzleContext()
   const [scope, animate] = useAnimate()
   const [pos, setPos] = useState(puzzle.piecePosition(id))
@@ -80,12 +82,12 @@ function PuzzleCell({ image, id, showId, highlightCorrect, size, gap, onSolve, a
       
       // solved, callback from top component
       if (solved) {
-        toast.success("Puzzle solved")
+        toast.success(dictionary.puzzle.solved)
         onSolve()
       }
     }
     catch {
-      toast.error("Illegal move!")
+      toast.error(dictionary.puzzle.illegalMove)
     }
   }
 
