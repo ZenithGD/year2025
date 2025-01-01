@@ -106,10 +106,6 @@ function MobileNavMenu() {
               <FontAwesomeIcon className="w-6" icon={faUser} />
               <p>Credits</p>
             </Link>
-            <Link href="/stats" className="p-2 flex items-center gap-1 w-full hover:bg-green-100/40 rounded-md">
-              <FontAwesomeIcon className="w-6" icon={faAward} />
-              <p>Stats</p>
-            </Link>
             <Link href="/howto" className="p-2 flex items-center gap-1 w-full hover:bg-green-100/40 rounded-md">
               <FontAwesomeIcon className="w-6" icon={faQuestionCircle} />
               <p>Behind the scenes</p>

@@ -5,10 +5,20 @@
     "puzzles": "Puzzles",
     "goToRanking": "Rankings",
     "introText": "en/diadhoahdohadhohadaes\nIn order to play the game, select a puzzle first. Then, click on the cell you want to move to the blank. The puzzle will be solved when the original image is reconstructed.",
-    "instructions": "In order to play the game, select a puzzle first. Then, click on the cell you want to move to the blank. The puzzle will be solved when the original image is reconstructed.",
+    "instructions": "In order to play the game, select a puzzle first. Then, click on the cell you want to move to the blank. The puzzle will be solved when the original image is reconstructed and the blank is located at the bottom right corner. Once you solve the puzzle, you'll be able to check how long it took you, as well as comparing your time with other users.",
     "bestTime": "Best time",
     "backToPuzzle": "Go back to puzzles",
     "enterName": "Write your nickname",
     "fetchingPInfo": "Fetching puzzle info...",
-    "processing": "Processing puzzle image..."
+    "processing": "Processing puzzle image...",
+    "allPuzzles": "All puzzles",
+    "menu": {
+        "label": "Menu",
+        "puzzles": "Puzzles",
+        "howto": "Behind the scenes"
+    },
+    "notFound": {
+        "title": "Page not found!",
+        "text": "This page doesn't exist. Go back to the puzzle page clicking the button below."
+    }
 }

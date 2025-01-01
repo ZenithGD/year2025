@@ -5,10 +5,20 @@
     "puzzles": "Puzzles",
     "goToRanking": "Clasiffications",
     "introText": "fr/diadhoahdohadhohada",
-    "instructions": "Pour jouer au jeu, choisis un puzzle. Après ça, clique sur la cellule que tu veux déplacer au trou. Le puzzle sera résolu quand l'image originale est reconstitué",
+    "instructions": "Pour jouer au jeu, tu dois choisir un puzzle. Après ça, clique sur la cellule que tu veux déplacer au trou. Le puzzle sera résolu quand l'image originale est reconstitué et le trou est placé au coin inférieur droit. Quand tu résous le puzzle, tu pourras voir ta chrono et la comparer avec les autres utilisateurs.",
     "bestTime": "Meilleur chrono",
     "backToPuzzle": "Rétourner aux puzzles",
     "enterName": "Écris ton pseudo",
     "fetchingPInfo": "Chargement de l'info des puzzles",
-    "processing": "Traitement de l'image du puzzle"
+    "processing": "Traitement de l'image du puzzle",
+    "allPuzzles": "Tous les puzzles",
+    "menu": {
+        "label": "Menu",
+        "puzzles": "Puzzles",
+        "howto": "dans les coulisses"
+    },
+    "notFound": {
+        "title": "Page introuvable!",
+        "text": "Cette page n'existe pas. Rétourne à la page des puzzles en cliquant le bouton ci-dessous."
+    }
 }

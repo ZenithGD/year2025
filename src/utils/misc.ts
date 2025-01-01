@@ -30,10 +30,10 @@ export function formatMsTime(ms: number)
   }
 
   // convert to mm:ss:ll
-  const millis = Math.floor(ms % 1000)
-  const totalSeconds = Math.floor(ms / 1000)
-  const seconds = Math.floor(totalSeconds % 60)
-  const minutes = Math.floor(totalSeconds / 60)
+  const millis = Math.floor(ms % 1000).toString().padStart(3, "0");
+  const totalSeconds = Math.floor(ms / 1000);
+  const seconds = (totalSeconds % 60).toString().padStart(2, "0");
+  const minutes = Math.floor(totalSeconds / 60).toString().padStart(2, "0");
 
   return `${minutes}:${seconds}:${millis}`
 }

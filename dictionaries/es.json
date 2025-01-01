@@ -5,10 +5,20 @@
     "puzzles": "Puzzles",
     "goToRanking": "Clasificaciones",
     "introText": "es/diadhoahdohadhohada",
-    "instructions": "Para jugar al juego, primero selecciona un puzzle. Después, pulsa la celda que quieres mover al hueco. El puzzle estará resuelto cuando se vea la imagen original. ",
+    "instructions": "Para jugar al juego, primero selecciona un puzzle. Después, pulsa la celda que quieres mover al hueco. El puzzle estará resuelto cuando se vea la imagen original y el hueco se sitúe en la esquina inferior derecha. Una vez resuelto, podrás comprobar el tiempo que has tardado y compararlo con el resto de usuarios.",
     "bestTime": "Mejor tiempo",
     "backToPuzzle": "Volver a los puzzles",
     "enterName": "Escribe tu nombre de usuario",
     "fetchingPInfo": "Cargando información de los puzzles...",
-    "processing": "Procesando imagen del puzzle..."
+    "processing": "Procesando imagen del puzzle...",
+    "allPuzzles": "Todos los puzzles",
+    "menu": {
+        "label": "Menú",
+        "puzzles": "Puzzles",
+        "howto": "Entre bastidores"
+    },
+    "notFound": {
+        "title": "¡Página no encontrada!",
+        "text": "Esta página no existe. Vuelve a la página de los puzzles pulsando el botón."
+    }
 }

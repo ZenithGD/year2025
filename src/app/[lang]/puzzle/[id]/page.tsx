@@ -34,7 +34,7 @@ function PuzzlePage(props: Props)
 function PuzzlePageComponent({ }: Props) {
   
   const params = useParams<{ id: string }>()
-  const id = parseInt(params["id"])
+  let id = params["id"]
 
   const dictionary = useDictionary()
 
@@ -42,9 +42,17 @@ function PuzzlePageComponent({ }: Props) {
   const isTablet = useMediaQuery({ query: `(max-width: ${MAX_TABLET_WIDTH}px)` })
 
   const fetchPuzzleInfo = async () => {
-    return await fetch(`/api/puzzle/${id}`)
-      .then(r => r.json())
-      .then(r => r.row) as PuzzleRowType
+    try {
+      const value = await fetch(`/api/puzzle/${id}`)
+        .then(r => r.json())
+        .then(r => r.row as PuzzleRowType)
+      
+      return value
+    }
+    catch {
+      throw new Error("Invalid puzzle")
+    }
+
   }
 
   const { isPending, isError, data, error } = useQuery({ queryKey: ['pinfo'], queryFn: fetchPuzzleInfo })

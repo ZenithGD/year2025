@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-quer
 import React from 'react'
 
 import { getPuzzleData, PuzzleSaveData, savePuzzleData } from '@/src/services/storageService';
+import { useDictionary } from '../context/i18n/dictionaryProvider';
 
 type Props = {
 }
@@ -24,6 +25,8 @@ function PuzzleSelectionPage(props: Props)
 
 function PuzzleSelectionPageComponent({ }: Props) {
 
+  const dictionary = useDictionary()
+
   const fetchPuzzlesInfo = async () => {
     return await fetch(`/api/puzzle`)
       .then(r => r.json())
@@ -41,7 +44,7 @@ function PuzzleSelectionPageComponent({ }: Props) {
   if (isPending)
     {
       return (
-        <p>Fetching puzzle info...</p>
+        <p>{dictionary.fetchingPInfo}</p>
       )
   }
  

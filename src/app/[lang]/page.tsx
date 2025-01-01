@@ -20,7 +20,7 @@ export default async function Home(props: {
       <main className="flex flex-col gap-8 items-center">
         <SnowOverlay maxParticles={75} disabledOnSingleCpuDevices/>
         <h1 className='text-center font-bold lg:text-4xl text-2xl font-christmas'>{dictionary.happyNewYear}</h1>
-        <p className="text-center">
+        <p className="text-center lg:w-1/2 w-full text-pretty">
           {dictionary.introText}
           <br/>
           {dictionary.instructions}
