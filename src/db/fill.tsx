@@ -13,7 +13,10 @@ async function processJSONData(data: Array<any>): Promise<PuzzleRowType[]> {
 
       return {
         id,
-        title: p.title,
+        es_title: p.es_title,
+        en_title: p.en_title,
+        fr_title: p.fr_title,
+        description: p.description,
         difficulty: p.difficulty,
         size: p.gridSize,
         image: p.image,

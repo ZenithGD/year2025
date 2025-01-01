@@ -1,10 +1,10 @@
-import { blob, integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core';
+import { integer, primaryKey, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 export const puzzle = sqliteTable("puzzle", {
   id: integer('id').primaryKey(),
-  es_title: text('title').notNull(),
-  en_title: text('title').notNull(),
-  fr_title: text('title').notNull(),
+  es_title: text('es_title').notNull(),
+  en_title: text('en_title').notNull(),
+  fr_title: text('fr_title').notNull(),
   description: text('description'),
   size: integer('size').notNull().default(3),
   difficulty: integer('difficulty').notNull().default(1),
