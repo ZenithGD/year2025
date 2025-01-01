@@ -1,3 +1,56 @@
 [
-  
+  {
+    "es_title": "Paz",
+    "en_title": "Peace",
+    "fr_title": "Paix",
+    "description": "Paloma de la paz. Pablo Picasso",
+    "difficulty": 1,
+    "size": 3,
+    "image": "paloma-picasso.jpg"
+  },
+  {
+    "es_title": "Fraternidad",
+    "en_title": "Fraternity",
+    "fr_title": "Fraternité",
+    "description": "La Liberté guidant le peuple. Eugène Delacroix",
+    "difficulty": 1,
+    "size": 3,
+    "image": "libertad-delacroix.webp"
+  },
+  {
+    "es_title": "Democracia",
+    "en_title": "Democracy",
+    "fr_title": "Démocracie",
+    "description": "El abrazo. Juan Genovés",
+    "difficulty": 2,
+    "size": 4,
+    "image": "el-brazo-juan-genoves.jpg"
+  },
+  {
+    "es_title": "Medioambiente",
+    "en_title": "Environment",
+    "fr_title": "Environnement",
+    "description": "Champs de blé verts à Auvers. Vincent van Gogh",
+    "difficulty": 2,
+    "size": 4,
+    "image": "trigos-vangogh.jpg"
+  },
+  {
+    "es_title": "Salud",
+    "en_title": "Health",
+    "fr_title": "Santé",
+    "description": "Louis Pasteur. Albert Edelfelt",
+    "difficulty": 3,
+    "size": 5,
+    "image": "pasteur-edelfelt.jpg"
+  },
+  {
+    "es_title": "Armonía",
+    "en_title": "Harmony",
+    "fr_title": "Harmonie",
+    "description": "Planet Earth. Explorer 1, NASA",
+    "difficulty": 3,
+    "size": 5,
+    "image": "earth.jpg"
+  }
 ]

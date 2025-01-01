@@ -49,11 +49,11 @@ function PuzzleCard({ puzzleData }: Props) {
             )
             : (nr.map((e, key) => <FontAwesomeIcon key={key} icon={faStar} />))  }
         </div>
-        <div className="bg-red-400 rounded-b-lg p-4 flex flex-col h-full gap-2 items-center">
+        <div className="bg-red-400 rounded-b-lg p-4 flex flex-col justify-center h-28 gap-2 items-center">
           <p className='text-red-900 font-bold lg:text-lg text-md line-clamp-2 text-pretty break-all'>{getTitleWithLocale(puzzleData, locale)}</p>
           <div className='flex justify-between items-center text-lg gap-2'>
             <FontAwesomeIcon icon={faStopwatch} />
-            <p className='md:block hidden line-clamp-1 text-sm'>{dictionary.bestTime}</p>
+            <p className='md:block hidden line-clamp-1 text-ellipsis text-sm'>{dictionary.bestTime}</p>
             <p className='text-red-800 text-sm'>
               {formatMsTime(puzzleData.saveData.time)}
             </p>
