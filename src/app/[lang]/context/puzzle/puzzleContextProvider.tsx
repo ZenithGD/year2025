@@ -14,8 +14,8 @@ function PuzzleContextProvider({ children, width, height, currentState }: React.
   const [puzzle, setPuzzle] = useState(createPuzzleContext(width, height, currentState))
 
   // game options
-  const [showId, setShowId] = useState(false)
-  const [highlightCorrect, setHighlightCorrect] = useState(false)
+  const [showId, setShowId] = useState(true)
+  const [highlightCorrect, setHighlightCorrect] = useState(true)
 
   return (
     <PuzzleContext.Provider value={{ puzzle, showId, setShowId, highlightCorrect, setHighlightCorrect }}>
