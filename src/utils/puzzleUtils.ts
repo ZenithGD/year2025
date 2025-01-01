@@ -31,7 +31,7 @@ export function isSolvable(state: number[], n: number): boolean
 {
   const iv = countInversions(state)
   const blankIndex = state.indexOf(0);
-  const blankRowFromTop = Math.floor(blankIndex / n);
+  const blankRowFromTop = Math.floor(blankIndex / n) + 1;
 
   if (n % 2 === 1) {
     return iv % 2 === 0;
